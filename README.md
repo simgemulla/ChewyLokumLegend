@@ -1,4 +1,4 @@
-ChewyLokumLegend
+ChewyLokumLegend - Group 6 (Dream Team)
 ================
 Images(Use Case Diagram and Domain Model) for requirements.md are in the "Issues" part.
 
