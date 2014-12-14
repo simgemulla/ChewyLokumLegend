@@ -83,19 +83,6 @@ Extensions:
 6d. There are two groups consisting of three or more lokums.
 1.	System calculates scores of both groups individually and score is increased by 4 x sum of scores.
 
-
-UML Use Case Diagram
-
- 
-
-
-
-
-
-
-
-Domain Model
- 
  
      
 OPERATION CONTRACTS 
