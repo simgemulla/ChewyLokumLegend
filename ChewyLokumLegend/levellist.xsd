@@ -1,0 +1,55 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="levellist">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="levels">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="level" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:byte" name="levelid"/>
+                    <xs:element type="xs:short" name="scoreneeded"/>
+                    <xs:element type="xs:byte" name="moves"/>
+                    <xs:element type="xs:byte" name="xcoordnumber"/>
+                    <xs:element type="xs:byte" name="ycoordnumber"/>
+                    <xs:element type="xs:string" name="locked"/>
+                    <xs:element type="xs:byte" name="highscore"/>
+                    <xs:element name="initialboard">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="lokums">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="lokum" maxOccurs="unbounded" minOccurs="0">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element type="xs:string" name="color"/>
+                                      <xs:element name="position">
+                                        <xs:complexType>
+                                          <xs:sequence>
+                                            <xs:element type="xs:byte" name="xcoord"/>
+                                            <xs:element type="xs:byte" name="ycoord"/>
+                                          </xs:sequence>
+                                        </xs:complexType>
+                                      </xs:element>
+                                      <xs:element type="xs:string" name="type"/>
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
