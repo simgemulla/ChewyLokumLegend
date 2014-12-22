@@ -79,5 +79,9 @@ abstract public class Lokum {
 	 * Called before a Lokum gets deleted.
 	 */
 	abstract public int destroy(int x, int y);
+	
+	public boolean isTimedLokum() {
+		return false;
+	}
 
 }

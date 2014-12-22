@@ -19,5 +19,9 @@ public class TimedLevel extends Level {
 	public int getTimeLimit() {
 		return timeLimit;
 	}
+	
+	public boolean isTimedLevel() {
+		return true;
+	}
 
 }

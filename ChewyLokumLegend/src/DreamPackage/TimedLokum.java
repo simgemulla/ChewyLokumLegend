@@ -40,5 +40,9 @@ public class TimedLokum extends Lokum {
 	public int getBonusTime() {
 		return bonusTime;
 	}
+	
+	public boolean isTimedLokum() {
+		return true;
+	}
 
 }

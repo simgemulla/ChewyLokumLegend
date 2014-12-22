@@ -104,5 +104,9 @@ public class Level {
 		}
 		return board;
 	}
+	
+	public boolean isTimedLevel() {
+		return false;
+	}
 
 }
