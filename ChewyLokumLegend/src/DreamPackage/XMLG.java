@@ -2,7 +2,6 @@ package DreamPackage;
 
 import java.awt.Color;
 import java.io.File;
-import java.io.IOException;
 
 import DreamPackage.Level;
 import DreamPackage.Lokum;
@@ -10,7 +9,6 @@ import DreamPackage.striped;
 import DreamPackage.wrapped;
 import DreamPackage.colorBomb;
 
-import javax.swing.text.DocumentFilter;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.ParserConfigurationException;
@@ -151,7 +149,7 @@ public class XMLG {
 						if (colorStr.equals("brown"))
 							c = Lokum.BROWN;
 						if (type.equals("Lokum"))
-							board[x][y] = new Lokum(c);
+							board[x][y] = new NormalLokum(c);
 						if (type.equals("vStriped"))
 							board[x][y] = new striped(c, striped.VERTICAL);
 						if (type.equals("hStriped"))
@@ -439,7 +437,7 @@ public class XMLG {
 							if (colorStr.equals("brown"))
 								c = Lokum.BROWN;
 							if (type.equals("Lokum"))
-								initialBoard[x][y] = new Lokum(c);
+								initialBoard[x][y] = new NormalLokum(c);
 							if (type.equals("vStriped"))
 								initialBoard[x][y] = new striped(c,
 										striped.VERTICAL);

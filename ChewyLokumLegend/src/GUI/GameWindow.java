@@ -27,7 +27,6 @@ import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.Document;
 
-import DreamPackage.LokumGame;
 import DreamPackage.XMLG;
 
 /**

@@ -1,7 +1,5 @@
 package DreamPackage;
 
-import java.awt.Color;
-
 import GUI.GameWindow;
 import GUI.MainMenu;
 import GUI.SelectLevelWindow;
@@ -48,42 +46,10 @@ public class LokumGame {
 	public Level[] getLevels() {
 		if (levelList != null)
 			return levelList;
-		Lokum[][] asd = new Lokum[5][5];
-		asd[0][0] = new Lokum(Lokum.RED);
-		asd[0][1] = new Lokum(Lokum.RED);
-		asd[0][2] = new Lokum(Lokum.GREEN);
-		asd[0][3] = new Lokum(Lokum.RED);
-		asd[0][4] = new Lokum(Lokum.BROWN);
-		asd[1][0] = new Lokum(Lokum.YELLOW);
-		asd[1][1] = new Lokum(Lokum.YELLOW);
-		asd[1][2] = new Lokum(Lokum.RED);
-		asd[1][3] = new Lokum(Lokum.GREEN);
-		asd[1][4] = new Lokum(Lokum.BROWN);
-		asd[2][0] = new Lokum(Lokum.RED);
-		asd[2][1] = new Lokum(Lokum.RED);
-		asd[2][2] = new Lokum(Lokum.YELLOW);
-		asd[2][3] = new Lokum(Lokum.YELLOW);
-		asd[2][4] = new Lokum(Lokum.GREEN);
-		asd[3][0] = new Lokum(Lokum.YELLOW);
-		asd[3][1] = new Lokum(Lokum.YELLOW);
-		asd[3][2] = new Lokum(Lokum.GREEN);
-		asd[3][3] = new Lokum(Lokum.GREEN);
-		asd[3][4] = new Lokum(Lokum.BROWN);
-		asd[4][0] = new Lokum(Lokum.RED);
-		asd[4][1] = new Lokum(Lokum.RED);
-		asd[4][2] = new Lokum(Lokum.YELLOW);
-		asd[4][3] = new Lokum(Lokum.YELLOW);
-		asd[4][4] = new Lokum(Lokum.GREEN);
-		Level level1 = new Level(1, 0, asd, 100000, 1, false);
-		levelList = new Level[1];
-		levelList[0] = level1;
+		
 		// NORMALDE BU OLACAK!!
 		levelList = XMLG.getLevelList();
 		// NORMALDE BU OLACAK!!
-		// System.out.println(GameBoard.getInstance().toString());
-		// GameBoard.getInstance().swapLokums(0,2, 1, 2);
-		// System.out.println("");
-		// System.out.println(GameBoard.getInstance().toString());
 		return levelList;
 	}
 
@@ -167,7 +133,6 @@ public class LokumGame {
 				XMLG.updateLocked(levelList[levelID + 1]);
 				getLevels();
 				SelectLevelWindow.getInstance().refresh();
-				System.out.println(levelList[1].getLocked());
 			}
 		} else {
 

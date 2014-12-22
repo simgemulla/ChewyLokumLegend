@@ -3,7 +3,7 @@ package DreamPackage;
 import java.awt.Color;
 import java.util.Random;
 
-public class Lokum {
+abstract public class Lokum {
 
 	private Color color;
 	public static final Color RED = new Color(204, 0, 0);
@@ -44,22 +44,20 @@ public class Lokum {
 		int a = (new Random()).nextInt(4);
 		switch (a) {
 		case 0:
-			return new Lokum(RED);
+			return new NormalLokum(RED);
 		case 1:
-			return new Lokum(GREEN);
+			return new NormalLokum(GREEN);
 		case 2:
-			return new Lokum(BROWN);
+			return new NormalLokum(BROWN);
 		default:
-			return new Lokum(YELLOW);
+			return new NormalLokum(YELLOW);
 		}
 	}
 
 	/**
 	 * @return A Lokum whose properties are the same as this
 	 */
-	public Lokum createCopy() {
-		return new Lokum(color);
-	}
+	abstract public Lokum createCopy();
 
 	public String toString() {
 		if (color.equals(RED)) {
@@ -76,5 +74,10 @@ public class Lokum {
 		}
 		return "Unknown Color";
 	}
+
+	/**
+	 * Called before a Lokum gets deleted.
+	 */
+	abstract public int destroy(int x, int y);
 
 }

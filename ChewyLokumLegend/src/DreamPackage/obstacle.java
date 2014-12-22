@@ -14,4 +14,15 @@ public class obstacle extends Lokum {
 		return "O";
 	}
 
+	@Override
+	public Lokum createCopy() {
+		return new obstacle();
+	}
+
+	@Override
+	// Destroying an obstacle? :D
+	public int destroy(int x, int y) {
+		return 0;
+	}
+
 }

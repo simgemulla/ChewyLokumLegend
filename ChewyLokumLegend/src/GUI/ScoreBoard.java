@@ -8,7 +8,6 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import DreamPackage.GameBoard;
 import DreamPackage.GameState;
 import DreamPackage.LokumGame;
 

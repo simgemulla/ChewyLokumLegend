@@ -18,15 +18,15 @@ public class GameBoardTest {
 		// Initializes g1, fills g1
 		g1 = GameBoard.getInstance();
 		Lokum[][] asd = new Lokum[3][3];
-		asd[0][0] = new Lokum(Lokum.RED);
-		asd[0][1] = new Lokum(Lokum.GREEN);
-		asd[0][2] = new Lokum(Lokum.BROWN);
-		asd[1][0] = new Lokum(Lokum.RED);
-		asd[1][1] = new Lokum(Lokum.RED);
-		asd[1][2] = new Lokum(Lokum.GREEN);
-		asd[2][0] = new Lokum(Lokum.BROWN);
-		asd[2][1] = new Lokum(Lokum.RED);
-		asd[2][2] = new Lokum(Lokum.RED);
+		asd[0][0] = new NormalLokum(Lokum.RED);
+		asd[0][1] = new NormalLokum(Lokum.GREEN);
+		asd[0][2] = new NormalLokum(Lokum.BROWN);
+		asd[1][0] = new NormalLokum(Lokum.RED);
+		asd[1][1] = new NormalLokum(Lokum.RED);
+		asd[1][2] = new NormalLokum(Lokum.GREEN);
+		asd[2][0] = new NormalLokum(Lokum.BROWN);
+		asd[2][1] = new NormalLokum(Lokum.RED);
+		asd[2][2] = new NormalLokum(Lokum.RED);
 
 		Level level1 = new Level(45, 0, asd, 1000, 0, false);
 		g1.setBoard(level1);

@@ -398,10 +398,8 @@ public class GameBoard {
 				continue;
 			}
 
-			if (l instanceof SpecialLokum) {
-				((SpecialLokum) l).specialEffect(x, y);
-				newScore += ((SpecialLokum) l).getDeleteBonus();
-			}
+			newScore += l.destroy(x, y);
+
 			newList[x][y] = null;
 
 			deleteList.remove(i);
