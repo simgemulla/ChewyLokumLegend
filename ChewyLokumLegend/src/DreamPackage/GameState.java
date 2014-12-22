@@ -56,7 +56,6 @@ public class GameState {
 		}
 	}
 
-	// Moves bitince ne olacak yazilmali
 	/**
 	 * Decrements the number of moves left.
 	 */
@@ -66,23 +65,16 @@ public class GameState {
 			GameWindow.getInstance().setRemainingMoves(remainingMoves);
 		} else {
 
-			// EKLENECEK
-			// Buraya bence boş bir window açıp game over replay? falan
-			// koyabiliriz? (onur)
 
 			LokumGame.getInstance().gameOver(false);
 		}
 
 	}
 
-	// Bu metodu sanirim bu hafta yazamayacagiz, XML lazim
 	/**
 	 * Saves the current state of the game.
 	 */
-	// Benim gorusum buna gerek yok burada, her seyden sonra XML'e savelemek çok
-	// mantikli degil, yorar sistemi Kullanici Savelesin bence.
-	// ama zor degil zaten comment'e aldigimizi cikarip oradaki kodda verdigimiz
-	// savelendi uyarisini silersek problemsiz savelemesi lazim. (onur)
+	
 	public void saveState() {
 		// GUI.GameWindow.Save();
 	}
