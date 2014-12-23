@@ -222,7 +222,7 @@ public class Board extends JLabel {
 
 		Graphics2D g2d = image.createGraphics();
 		g2d.clipRect(i, j, LOKUM_SIZE, LOKUM_SIZE);
-		if (lok.getOrientation() == HORIZONTAL) {
+		if (lok.getOrientation() == striped.HORIZONTAL) {
 			if (lok.getColor().equals(Lokum.RED))
 				g2d.drawImage(redroseH, i, j, null);
 			if (lok.getColor().equals(Lokum.YELLOW))

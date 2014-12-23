@@ -36,7 +36,6 @@ public class wrapped extends SpecialLokum {
 		return "Unknown Color";
 	}
 
-	// Implement edilecek
 	public void specialEffect(int x, int y) {
 	}
 

@@ -10,6 +10,7 @@
                   <xs:sequence>
                     <xs:element type="xs:byte" name="levelid"/>
                     <xs:element type="xs:short" name="scoreneeded"/>
+	   <xs:element type="xs:byte" name="timelimit"/>
                     <xs:element type="xs:byte" name="moves"/>
                     <xs:element type="xs:byte" name="xcoordnumber"/>
                     <xs:element type="xs:byte" name="ycoordnumber"/>

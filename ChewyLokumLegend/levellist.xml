@@ -3,6 +3,7 @@
 		<level>
 			<levelid>0</levelid>
 			<scoreneeded>2000</scoreneeded>
+			<timelimit>-1</timelimit>
 			<moves>20</moves>
 			<xcoordnumber>5</xcoordnumber>
 			<ycoordnumber>5</ycoordnumber>
@@ -216,6 +217,7 @@
 		<level>
 			<levelid>1</levelid>
 			<scoreneeded>32300</scoreneeded>
+			<timelimit>-1</timelimit>
 			<moves>35</moves>
 			<xcoordnumber>4</xcoordnumber>
 			<ycoordnumber>7</ycoordnumber>

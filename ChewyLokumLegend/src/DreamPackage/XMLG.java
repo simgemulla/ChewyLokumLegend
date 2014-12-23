@@ -56,7 +56,7 @@ public class XMLG {
 				int levelID = 0;
 				int score = 0;
 				int movesLeft = 0;
-				// int timeLeft = 0;
+				int timeLeft = 0;
 				int scoreNeeded = 0;
 				int xMax = 0;
 				int yMax = 0;
@@ -71,9 +71,9 @@ public class XMLG {
 					movesLeft = Integer.parseInt(stateElement
 							.getElementsByTagName("movesleft").item(0)
 							.getTextContent());
-					// timeLeft = Integer.parseInt(stateElement
-					// .getElementsByTagName("timeleft").item(0)
-					// .getTextContent());
+					timeLeft = Integer.parseInt(stateElement
+							.getElementsByTagName("timeleft").item(0)
+							.getTextContent());
 					score = Integer.parseInt(stateElement
 							.getElementsByTagName("currentscore").item(0)
 							.getTextContent());
@@ -148,10 +148,6 @@ public class XMLG {
 								.item(0).getTextContent();
 						Color c = null;
 
-						// if LokumTime = -1
-						// new Normal Lokum
-						// else new TimedLokum (LokumTime)
-
 						if (colorStr.equals("red"))
 							c = Lokum.RED;
 						if (colorStr.equals("yellow"))
@@ -162,6 +158,8 @@ public class XMLG {
 							c = Lokum.BROWN;
 						if (type.equals("Lokum"))
 							board[x][y] = new NormalLokum(c);
+						if (type.equals("tLokum"))
+							board[x][y] = new TimedLokum(c);
 						if (type.equals("vStriped"))
 							board[x][y] = new striped(c, striped.VERTICAL);
 						if (type.equals("hStriped"))
@@ -190,11 +188,14 @@ public class XMLG {
 					}
 
 				}
-				// if timeLeft = -1
-				// new Level
-				// else new TimedLevel (, , , , ,timeLeft)
-				level = new NormalLevel(movesLeft, score, board, scoreNeeded,
-						levelID, false);
+
+				if (timeLeft == -1) {
+					level = new NormalLevel(movesLeft, score, board,
+							scoreNeeded, levelID, false);
+				} else {
+					level = new TimedLevel(movesLeft, score, board,
+							scoreNeeded, levelID, false, timeLeft);
+				}
 
 			} catch (SAXParseException err) {
 				System.out.println("** Parsing error" + ", line "
@@ -222,8 +223,14 @@ public class XMLG {
 		String currentscore = String.valueOf(gs.getScore());
 		String goalscore = String.valueOf(gs.getSelectedLevel()
 				.getScoreNeeded());
-		// String timeLeft = String.valueOf(gs.getSelectedLevel()
-		// .getTimeLeft());
+		String timeLeft;
+		if (gs.getSelectedLevel() instanceof TimedLevel) {
+			timeLeft = String.valueOf(((TimedLevel) gs.getSelectedLevel())
+					.getRemainingTime());
+		} else {
+			timeLeft = "-1";
+		}
+
 		String movesleft = String.valueOf(gs.getRemainingMoves());
 
 		try {
@@ -326,6 +333,8 @@ public class XMLG {
 							typeText = document.createTextNode("vStriped");
 						if (lokum instanceof wrapped)
 							typeText = document.createTextNode("wrapped");
+						if (lokum instanceof TimedLokum)
+							typeText = document.createTextNode("tLokum");
 						typeElement.appendChild(typeText);
 						lokumElement.appendChild(typeElement);
 					}
@@ -342,13 +351,13 @@ public class XMLG {
 			Node movesleftNode = document.createElement("movesleft");
 			movesleftNode.setTextContent(movesleft);
 			game.appendChild(movesleftNode);
-			// Node movesleftNode = document.createElement("timeleft");
-			// timeLeftNode.setTextContent(timeleft);
-			// game.appendChild(timeLeftNode);
+			Node timeleftNode = document.createElement("timeleft");
+			timeleftNode.setTextContent(timeLeft);
+			game.appendChild(timeleftNode);
 			Node levelNode = document.createElement("level");
 			levelNode.setTextContent(levelid);
 			game.appendChild(levelNode);
-			// Creating numeric info
+			// ------------------
 
 			TransformerFactory transformerFactory = TransformerFactory
 					.newInstance();
@@ -393,7 +402,7 @@ public class XMLG {
 				for (int s = 0; s < listOflevels.getLength(); s++) {
 
 					int moveCount = 0;
-					// int timeLimit= 0;
+					int timeLimit = 0;
 					int highScore = 0;
 					Lokum[][] initialBoard = null;
 					int scoreNeeded = 0;
@@ -419,9 +428,9 @@ public class XMLG {
 						scoreNeeded = Integer.parseInt(levelElement
 								.getElementsByTagName("scoreneeded").item(0)
 								.getTextContent());
-						// timeLeft = Integer.parseInt(levelElement
-						// .getElementsByTagName("timelimit").item(0)
-						// .getTextContent());
+						timeLimit = Integer.parseInt(levelElement
+								.getElementsByTagName("timelimit").item(0)
+								.getTextContent());
 						locked = Boolean.parseBoolean(levelElement
 								.getElementsByTagName("locked").item(0)
 								.getTextContent());
@@ -479,8 +488,14 @@ public class XMLG {
 						}
 
 					}
-					levellist[s] = new NormalLevel(moveCount, highScore,
-							initialBoard, scoreNeeded, levelID, locked);
+					if (timeLimit == -1) {
+						levellist[s] = new NormalLevel(moveCount, highScore,
+								initialBoard, scoreNeeded, levelID, locked);
+					} else {
+						levellist[s] = new TimedLevel(moveCount, highScore,
+								initialBoard, scoreNeeded, levelID, locked,
+								timeLimit);
+					}
 				}
 			} catch (SAXParseException err) {
 				System.out.println("** Parsing error" + ", line "
@@ -497,14 +512,6 @@ public class XMLG {
 
 		}
 		return levellist;
-	}
-
-	public static void SaveLevel()
-
-	// Level highscore ve lockedluÛun aİlmasİ gŸncellendiÛinde aÛİrİlİr =>
-	// LevelList.XML gŸncellenir
-	{
-
 	}
 
 	public static void updateHighScore(Level l) {

@@ -44,21 +44,36 @@ public class striped extends SpecialLokum {
 
 	public String toString() {
 		if (getColor().equals(Lokum.RED)) {
-			return "Rs ";
+			if (orientation == HORIZONTAL) {
+				return "RsH ";
+			} else {
+				return "RsV ";
+			}
 
 		} else if (getColor().equals(Lokum.GREEN)) {
-			return "Gs ";
+			if (orientation == HORIZONTAL) {
+				return "GsH ";
+			} else {
+				return "GsV ";
+			}
 
 		} else if (getColor().equals(Lokum.YELLOW)) {
-			return "Ys ";
+			if (orientation == HORIZONTAL) {
+				return "YsH ";
+			} else {
+				return "YsV ";
+			}
 
 		} else if (getColor().equals(Lokum.BROWN)) {
-			return "Bs ";
+			if (orientation == HORIZONTAL) {
+				return "BsH ";
+			} else {
+				return "BsV ";
+			}
 		}
 		return "Unknown Color";
 	}
 
-	// Implement edilecek
 	public void specialEffect(int x, int y) {
 		Lokum[][] board = GameBoard.getInstance().getLokumList();
 		if (orientation == HORIZONTAL) {

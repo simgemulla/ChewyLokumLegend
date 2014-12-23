@@ -68,6 +68,7 @@
 <xs:element name="goalscore" type="xs:int"/>
 <xs:element name="currentscore" type="xs:int"/>
 <xs:element name="movesleft" type="xs:int"/>
+<xs:element name="timeleft" type="xs:byte"/>
 <xs:element name="level" type="xs:int"/>
 </xs:sequence>
 </xs:complexType>

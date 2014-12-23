@@ -22,7 +22,6 @@ public class colorBomb extends SpecialLokum {
 		return "X";
 	}
 
-	// Implement edilecek
 	public void specialEffect(int x, int y) {
 	}
 
