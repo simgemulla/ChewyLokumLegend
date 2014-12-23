@@ -107,6 +107,10 @@ public class GameWindow extends JFrame {
 		sb.setScoreNeeded(x);
 	}
 
+	public void setRemainingTime(int x) {
+		sb.setRemainingTime(x);
+	}
+
 	public static void Save() {
 		try {
 

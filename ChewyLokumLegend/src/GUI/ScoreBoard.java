@@ -21,12 +21,14 @@ public class ScoreBoard extends JPanel {
 	JLabel scoreLabel;
 	JLabel remMovesLabel;
 	JLabel scoreNeededLabel;
+	JLabel timeLabel;
 
 	public ScoreBoard() {
 		setLayout(new GridLayout(5, 0));
 		scoreLabel = new JLabel();
 		remMovesLabel = new JLabel();
 		scoreNeededLabel = new JLabel();
+		timeLabel = new JLabel();
 		JButton resButton = new JButton("Restart Level");
 		resButton.addActionListener(new ActionListener() {
 
@@ -49,6 +51,7 @@ public class ScoreBoard extends JPanel {
 		add(scoreLabel);
 		add(remMovesLabel);
 		add(scoreNeededLabel);
+		add(timeLabel);
 		add(resButton);
 		add(mainButton);
 	}
@@ -67,5 +70,9 @@ public class ScoreBoard extends JPanel {
 
 	public void setScoreNeeded(int x) {
 		scoreNeededLabel.setText(String.valueOf("Score Needed:" + x));
+	}
+
+	public void setRemainingTime(int x) {
+		timeLabel.setText(String.valueOf("Time Left:" + x));
 	}
 }

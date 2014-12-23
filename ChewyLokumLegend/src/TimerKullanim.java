@@ -51,7 +51,6 @@ public void actionPerformed(ActionEvent event) {
  
  Timer timer = new Timer(1000, sayici);
 
-
   timer.start();
 
     }

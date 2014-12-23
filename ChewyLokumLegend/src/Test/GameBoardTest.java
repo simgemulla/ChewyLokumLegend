@@ -28,7 +28,7 @@ public class GameBoardTest {
 		asd[2][1] = new NormalLokum(Lokum.RED);
 		asd[2][2] = new NormalLokum(Lokum.RED);
 
-		Level level1 = new Level(45, 0, asd, 1000, 0, false);
+		Level level1 = new NormalLevel(45, 0, asd, 1000, 0, false);
 		g1.setBoard(level1);
 	}
 

@@ -1,6 +1,6 @@
 package DreamPackage;
 
-public class Level {
+abstract public class Level {
 
 	private int moveCount;
 	private int highScore;
@@ -104,9 +104,6 @@ public class Level {
 		}
 		return board;
 	}
-	
-	public boolean isTimedLevel() {
-		return false;
-	}
 
+	abstract public void startLevel();
 }

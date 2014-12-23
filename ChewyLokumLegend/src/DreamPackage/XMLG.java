@@ -56,7 +56,7 @@ public class XMLG {
 				int levelID = 0;
 				int score = 0;
 				int movesLeft = 0;
-				//int timeLeft = 0;
+				// int timeLeft = 0;
 				int scoreNeeded = 0;
 				int xMax = 0;
 				int yMax = 0;
@@ -71,9 +71,9 @@ public class XMLG {
 					movesLeft = Integer.parseInt(stateElement
 							.getElementsByTagName("movesleft").item(0)
 							.getTextContent());
-					//timeLeft = Integer.parseInt(stateElement
-					//		.getElementsByTagName("timeleft").item(0)
-					//		.getTextContent());
+					// timeLeft = Integer.parseInt(stateElement
+					// .getElementsByTagName("timeleft").item(0)
+					// .getTextContent());
 					score = Integer.parseInt(stateElement
 							.getElementsByTagName("currentscore").item(0)
 							.getTextContent());
@@ -141,17 +141,17 @@ public class XMLG {
 						int y = Integer.parseInt(lokumElement
 								.getElementsByTagName("ycoord").item(0)
 								.getTextContent());
-						//int LokumTime = Integer.parseInt(lokumElement
-						//		.getElementsByTagName("lokumtime").item(0)
-						//		.getTextContent());
+						// int LokumTime = Integer.parseInt(lokumElement
+						// .getElementsByTagName("lokumtime").item(0)
+						// .getTextContent());
 						String type = lokumElement.getElementsByTagName("type")
 								.item(0).getTextContent();
 						Color c = null;
-						
-						//if LokumTime = -1
-						//new Normal Lokum
+
+						// if LokumTime = -1
+						// new Normal Lokum
 						// else new TimedLokum (LokumTime)
-						
+
 						if (colorStr.equals("red"))
 							c = Lokum.RED;
 						if (colorStr.equals("yellow"))
@@ -191,9 +191,9 @@ public class XMLG {
 
 				}
 				// if timeLeft = -1
-				//	new Level
+				// new Level
 				// else new TimedLevel (, , , , ,timeLeft)
-				level = new Level(movesLeft, score, board, scoreNeeded,
+				level = new NormalLevel(movesLeft, score, board, scoreNeeded,
 						levelID, false);
 
 			} catch (SAXParseException err) {
@@ -222,8 +222,8 @@ public class XMLG {
 		String currentscore = String.valueOf(gs.getScore());
 		String goalscore = String.valueOf(gs.getSelectedLevel()
 				.getScoreNeeded());
-		//String timeLeft = String.valueOf(gs.getSelectedLevel()
-					//.getTimeLeft());
+		// String timeLeft = String.valueOf(gs.getSelectedLevel()
+		// .getTimeLeft());
 		String movesleft = String.valueOf(gs.getRemainingMoves());
 
 		try {
@@ -256,10 +256,10 @@ public class XMLG {
 			for (int i = 0; i < lokumList.length; i++) {
 				for (int j = 0; j < lokumList[i].length; j++) {
 					Lokum lokum = lokumList[i][j];
-					//if  (isTimedLokum)
+					// if (isTimedLokum)
 					// timeLeft == TimedLokum.getTime();
 					// else timeLeft == -1
-					
+
 					if (lokum instanceof obstacle) {
 						Element obstacleElement = document
 								.createElement("obstacle");
@@ -342,9 +342,9 @@ public class XMLG {
 			Node movesleftNode = document.createElement("movesleft");
 			movesleftNode.setTextContent(movesleft);
 			game.appendChild(movesleftNode);
-			//Node movesleftNode = document.createElement("timeleft");
-			//timeLeftNode.setTextContent(timeleft);
-			//game.appendChild(timeLeftNode);
+			// Node movesleftNode = document.createElement("timeleft");
+			// timeLeftNode.setTextContent(timeleft);
+			// game.appendChild(timeLeftNode);
 			Node levelNode = document.createElement("level");
 			levelNode.setTextContent(levelid);
 			game.appendChild(levelNode);
@@ -393,7 +393,7 @@ public class XMLG {
 				for (int s = 0; s < listOflevels.getLength(); s++) {
 
 					int moveCount = 0;
-					//int timeLimit= 0;
+					// int timeLimit= 0;
 					int highScore = 0;
 					Lokum[][] initialBoard = null;
 					int scoreNeeded = 0;
@@ -412,16 +412,16 @@ public class XMLG {
 						moveCount = Integer.parseInt(levelElement
 								.getElementsByTagName("moves").item(0)
 								.getTextContent());
-						
+
 						highScore = Integer.parseInt(levelElement
 								.getElementsByTagName("highscore").item(0)
 								.getTextContent());
 						scoreNeeded = Integer.parseInt(levelElement
 								.getElementsByTagName("scoreneeded").item(0)
 								.getTextContent());
-						//timeLeft = Integer.parseInt(levelElement
-						//.getElementsByTagName("timelimit").item(0)
-						//.getTextContent());
+						// timeLeft = Integer.parseInt(levelElement
+						// .getElementsByTagName("timelimit").item(0)
+						// .getTextContent());
 						locked = Boolean.parseBoolean(levelElement
 								.getElementsByTagName("locked").item(0)
 								.getTextContent());
@@ -479,7 +479,7 @@ public class XMLG {
 						}
 
 					}
-					levellist[s] = new Level(moveCount, highScore,
+					levellist[s] = new NormalLevel(moveCount, highScore,
 							initialBoard, scoreNeeded, levelID, locked);
 				}
 			} catch (SAXParseException err) {
@@ -610,7 +610,6 @@ public class XMLG {
 	// XMLValidation
 
 	static boolean validateXMLSchema(String string, String string2) {
-		// TODO Auto-generated method stub
 		try {
 			SchemaFactory factory = SchemaFactory
 					.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
