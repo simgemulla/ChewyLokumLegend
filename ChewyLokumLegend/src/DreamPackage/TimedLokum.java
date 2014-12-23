@@ -31,16 +31,16 @@ public class TimedLokum extends Lokum {
 	}
 
 	@Override
-	// We have to increase time left.
 	public int destroy(int x, int y) {
-		// TODO Auto-generated method stub
+		((TimedLevel) GameState.getInstance().getSelectedLevel())
+				.increaseRemainingTime(bonusTime);
 		return 0;
 	}
 
 	public int getBonusTime() {
 		return bonusTime;
 	}
-	
+
 	public boolean isTimedLokum() {
 		return true;
 	}

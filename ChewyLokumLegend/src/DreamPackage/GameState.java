@@ -40,6 +40,7 @@ public class GameState {
 		GameWindow.getInstance().setScore(score);
 		GameWindow.getInstance().setRemainingMoves(remainingMoves);
 		GameWindow.getInstance().setScoreNeeded(l.getScoreNeeded());
+		l.startLevel();
 	}
 
 	/**
@@ -65,7 +66,6 @@ public class GameState {
 			GameWindow.getInstance().setRemainingMoves(remainingMoves);
 		} else {
 
-
 			LokumGame.getInstance().gameOver(false);
 		}
 
@@ -74,9 +74,9 @@ public class GameState {
 	/**
 	 * Saves the current state of the game.
 	 */
-	
+
 	public void saveState() {
-		// GUI.GameWindow.Save();
+		XMLG.SaveState();
 	}
 
 	public Level getSelectedLevel() {

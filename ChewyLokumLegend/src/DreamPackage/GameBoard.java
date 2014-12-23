@@ -325,12 +325,14 @@ public class GameBoard {
 			}
 
 		}
+
 		System.out.println("--- New Swap ---");
 		int count = checkGroups();
 		if (count == 0 && deleteList.size() == 0) {
 			Lokum a = lokumList[x1][y1].createCopy();
 			lokumList[x1][y1] = lokumList[x2][y2].createCopy();
 			lokumList[x2][y2] = a.createCopy();
+			// BURAYA SPECIAL SWAP MEVZUU GELMELÝ
 			return;
 		}
 		count = 1; // To enter while

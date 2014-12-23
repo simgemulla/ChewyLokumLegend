@@ -16,7 +16,6 @@ public class TimedLevel extends Level {
 
 		public void actionPerformed(ActionEvent arg0) {
 			decreaseRemainingTime(1);
-			GameWindow.getInstance().setRemainingTime(remainingTime);
 		}
 	};
 
@@ -56,6 +55,7 @@ public class TimedLevel extends Level {
 	 */
 	public void increaseRemainingTime(int amount) {
 		this.remainingTime += amount;
+		GameWindow.getInstance().setRemainingTime(remainingTime);
 	}
 
 	/**
@@ -66,13 +66,16 @@ public class TimedLevel extends Level {
 		if (remainingTime - amount > 0) {
 			remainingTime -= amount;
 		} else {
+			timer.stop();
 			LokumGame.getInstance().gameOver(false);
 		}
+		GameWindow.getInstance().setRemainingTime(remainingTime);
 	}
 
 	@Override
 	public void startLevel() {
 		remainingTime = timeLimit;
+		GameWindow.getInstance().setRemainingTime(remainingTime);
 		timer = new Timer(1000, actList);
 		timer.start();
 	}

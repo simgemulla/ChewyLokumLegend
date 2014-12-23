@@ -8,7 +8,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.File;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -16,16 +15,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JToolBar;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
-
-import org.w3c.dom.Document;
 
 import DreamPackage.XMLG;
 
@@ -109,35 +98,6 @@ public class GameWindow extends JFrame {
 
 	public void setRemainingTime(int x) {
 		sb.setRemainingTime(x);
-	}
-
-	public static void Save() {
-		try {
-
-			DocumentBuilderFactory docFactory = DocumentBuilderFactory
-					.newInstance();
-			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
-
-			Document doc = docBuilder.newDocument();
-
-			// buras› bilgilerin kaydedilece€i yer, buras› ayarlanacak xml
-			// hocan›n verdi€i bilgilere göre.
-
-			TransformerFactory transformerFactory = TransformerFactory
-					.newInstance();
-			Transformer transformer = transformerFactory.newTransformer();
-			DOMSource source = new DOMSource(doc);
-			StreamResult result = new StreamResult(new File("Dream-game.xml"));
-
-			transformer.transform(source, result);
-
-			System.out.println("Game Saved to Dream-game.xml!");
-
-		} catch (ParserConfigurationException pce) {
-			pce.printStackTrace();
-		} catch (TransformerException tfe) {
-			tfe.printStackTrace();
-		}
 	}
 
 	protected void addButtons(final JToolBar toolBar) {

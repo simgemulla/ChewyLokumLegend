@@ -475,6 +475,8 @@ public class XMLG {
 								c = Lokum.BROWN;
 							if (type.equals("Lokum"))
 								initialBoard[x][y] = new NormalLokum(c);
+							if (type.equals("tLokum"))
+								initialBoard[x][y] = new TimedLokum(c);
 							if (type.equals("vStriped"))
 								initialBoard[x][y] = new striped(c,
 										striped.VERTICAL);

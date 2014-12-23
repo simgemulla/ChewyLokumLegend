@@ -41,15 +41,11 @@ public class LokumGame {
 	 * @modifies levelList
 	 */
 
-	// Level'lari reflection ile cekebiliriz. Bu durumda her Level'in bir
-	// class'i olmali -- iPTAL OLDU TAKMAYIN
 	public Level[] getLevels() {
 		if (levelList != null)
 			return levelList;
-		
-		// NORMALDE BU OLACAK!!
+
 		levelList = XMLG.getLevelList();
-		// NORMALDE BU OLACAK!!
 		return levelList;
 	}
 

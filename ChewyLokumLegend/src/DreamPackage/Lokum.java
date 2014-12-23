@@ -35,22 +35,37 @@ abstract public class Lokum {
 		return true;
 	}
 
-	// Only gives normal Lokums!
+	// Only gives Normal or Timed Lokums!
 	/**
 	 * 
 	 * @return A Lokum with random color
 	 */
 	public static Lokum getRandomLokum() {
-		int a = (new Random()).nextInt(4);
+		Random rand = new Random();
+		if (GameState.getInstance().getSelectedLevel() instanceof TimedLevel) {
+			int a = rand.nextInt(10);
+			if (a == 0) {
+				return new TimedLokum(getRandomColor());
+			} else {
+				return new NormalLokum(getRandomColor());
+			}
+		} else {
+			return new NormalLokum(getRandomColor());
+		}
+	}
+
+	public static Color getRandomColor() {
+		Random rand = new Random();
+		int a = rand.nextInt(4);
 		switch (a) {
 		case 0:
-			return new NormalLokum(RED);
+			return RED;
 		case 1:
-			return new NormalLokum(GREEN);
+			return GREEN;
 		case 2:
-			return new NormalLokum(BROWN);
+			return BROWN;
 		default:
-			return new NormalLokum(YELLOW);
+			return YELLOW;
 		}
 	}
 
@@ -79,9 +94,5 @@ abstract public class Lokum {
 	 * Called before a Lokum gets deleted.
 	 */
 	abstract public int destroy(int x, int y);
-	
-	public boolean isTimedLokum() {
-		return false;
-	}
 
 }
