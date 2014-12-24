@@ -36,6 +36,7 @@ public class endGame extends JFrame {
 		returnButton.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent arg0) {
+				GameWindow.getInstance().setEnabled(true);
 				LokumGame.getInstance().showMainMenu();
 				endGame.getInstance().dispose();
 			}
@@ -44,6 +45,7 @@ public class endGame extends JFrame {
 		nextButton.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent arg0) {
+				GameWindow.getInstance().setEnabled(true);
 				LokumGame.getInstance()
 						.selectLevel(
 								GameState.getInstance().getSelectedLevel()
@@ -55,6 +57,7 @@ public class endGame extends JFrame {
 		retryButton.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent arg0) {
+				GameWindow.getInstance().setEnabled(true);
 				LokumGame.getInstance()
 						.selectLevel(
 								GameState.getInstance().getSelectedLevel()
@@ -93,11 +96,4 @@ public class endGame extends JFrame {
 		}
 	}
 
-	// BURASI DEÐÝÞMELÝ
-	public void setVisible(boolean a) {
-		super.setVisible(a);
-		if (a) {
-			// GameWindow.getInstance().setEnabled(false);
-		}
-	}
 }

@@ -56,6 +56,7 @@ public class LokumGame {
 		MainMenu.getInstance().setVisible(false);
 		SelectLevelWindow slw = SelectLevelWindow.getInstance();
 		slw.pack();
+		slw.setLocationRelativeTo(null);
 		slw.setVisible(true);
 	}
 
@@ -65,6 +66,7 @@ public class LokumGame {
 		SelectLevelWindow.getInstance().setVisible(false);
 		MainMenu menu = MainMenu.getInstance();
 		menu.pack();
+		menu.setLocationRelativeTo(null);
 		menu.setVisible(true);
 	}
 
@@ -86,6 +88,7 @@ public class LokumGame {
 		GameWindow gw = GameWindow.getInstance();
 		gw.paintBoard();
 		gw.pack();
+		gw.setLocationRelativeTo(null);
 		gw.setVisible(true);
 	}
 
@@ -115,6 +118,7 @@ public class LokumGame {
 		GameWindow gw = GameWindow.getInstance();
 		gw.paintBoard();
 		gw.pack();
+		gw.setLocationRelativeTo(null);
 		gw.setVisible(true);
 		MainMenu.getInstance().setVisible(false);
 	}
@@ -134,9 +138,10 @@ public class LokumGame {
 
 		}
 		endGame eg = endGame.getInstance();
-		GameWindow.getInstance().setVisible(false);
+		GameWindow.getInstance().setEnabled(false);
 		eg.setResult(didWin);
 		eg.pack();
+		eg.setLocationRelativeTo(null);
 		eg.setVisible(true);
 	}
 
