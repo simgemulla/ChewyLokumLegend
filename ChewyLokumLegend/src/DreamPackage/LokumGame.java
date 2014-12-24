@@ -127,12 +127,17 @@ public class LokumGame {
 			if (levelID < levelList.length - 1) {
 				levelList[levelID + 1].setLocked(false);
 				XMLG.updateLocked(levelList[levelID + 1]);
-				getLevels();
-				SelectLevelWindow.getInstance().refresh();
-			}
-		} else {
-
-		}
+                // Burada time normal calisiyor. Ama kazanip retry diyince remaining time'i sifirlamiyor.
+                //Restart yapinca da time durmuyor ve sifirlanmiyor kaldigi yerden devam ediyor.
+                getLevels();
+                SelectLevelWindow.getInstance().refresh();
+            }
+        } else {
+            
+        }
+        // Ama burada kazanamadiginda retry diyince time'i direkt 1 yapiyor.
+        //burada da time'ı durdurmamiz gerekmiyor mu? Timer Level'daki fieldler private oldugu icin cekemiyorum. Ek olaral bi
+        // method mu yazmak gerekli?
 		endGame eg = endGame.getInstance();
 		GameWindow.getInstance().setVisible(false);
 		eg.setResult(didWin);
