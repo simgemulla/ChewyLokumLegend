@@ -49,6 +49,7 @@ public class ScoreBoard extends JPanel {
 		mainButton.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent arg0) {
+				GameState.getInstance().getSelectedLevel().quitLevel();
 				LokumGame.getInstance().showMainMenu();
 			}
 		});

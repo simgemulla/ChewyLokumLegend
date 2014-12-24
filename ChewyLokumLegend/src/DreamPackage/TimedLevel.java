@@ -83,6 +83,11 @@ public class TimedLevel extends Level {
 	}
 
 	@Override
+	public void quitLevel() {
+		timer.stop();
+	}
+
+	@Override
 	public Level deepClone() {
 		return new TimedLevel(this.getMoveCount(), this.getHighScore(),
 				this.copyBoard(), this.getScoreNeeded(), this.getLevelID(),

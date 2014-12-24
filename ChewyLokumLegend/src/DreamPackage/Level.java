@@ -125,6 +125,8 @@ abstract public class Level {
 
 	abstract public void startLevel();
 
+	abstract public void quitLevel();
+
 	/**
 	 * @return A deep-clone of the level
 	 */

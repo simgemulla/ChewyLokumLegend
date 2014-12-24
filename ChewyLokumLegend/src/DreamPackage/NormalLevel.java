@@ -20,4 +20,8 @@ public class NormalLevel extends Level {
 				this.getLocked(), this.getSpecialSwapCount());
 	}
 
+	@Override
+	public void quitLevel() {
+	}
+
 }

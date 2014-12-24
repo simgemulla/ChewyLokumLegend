@@ -34,6 +34,8 @@ public class GameState {
 	 * Sets the state according to the Level l.
 	 */
 	public void setState(Level l) {
+		if (selectedLevel != null)
+			selectedLevel.quitLevel();
 		selectedLevel = l.deepClone();
 		remainingMoves = selectedLevel.getMoveCount();
 		score = 0;

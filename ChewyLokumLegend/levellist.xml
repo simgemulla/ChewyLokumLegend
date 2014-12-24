@@ -456,7 +456,7 @@
 			</initialboard>
 		</level>
 		<level>
-			<levelid>0</levelid>
+			<levelid>2</levelid>
 			<scoreneeded>2000</scoreneeded>
 			<timelimit>10</timelimit>
 			<swapcount>3</swapcount>
