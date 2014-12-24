@@ -20,8 +20,10 @@ public class TimedLevel extends Level {
 	};
 
 	public TimedLevel(int moveCount, int highScore, Lokum[][] initialBoard,
-			int scoreNeeded, int levelID, boolean locked, int timeLimit) {
-		super(moveCount, highScore, initialBoard, scoreNeeded, levelID, locked);
+			int scoreNeeded, int levelID, boolean locked, int specialSwapCount,
+			int timeLimit) {
+		super(moveCount, highScore, initialBoard, scoreNeeded, levelID, locked,
+				specialSwapCount);
 		setTimeLimit(timeLimit);
 	}
 
@@ -78,6 +80,13 @@ public class TimedLevel extends Level {
 		GameWindow.getInstance().setRemainingTime(remainingTime);
 		timer = new Timer(1000, actList);
 		timer.start();
+	}
+
+	@Override
+	public Level deepClone() {
+		return new TimedLevel(this.getMoveCount(), this.getHighScore(),
+				this.copyBoard(), this.getScoreNeeded(), this.getLevelID(),
+				this.getLocked(), this.getSpecialSwapCount(), timeLimit);
 	}
 
 }

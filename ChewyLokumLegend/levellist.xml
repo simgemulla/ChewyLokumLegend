@@ -5,6 +5,7 @@
 			<levelid>0</levelid>
 			<scoreneeded>2000</scoreneeded>
 			<timelimit>-1</timelimit>
+			<swapcount>1</swapcount>
 			<moves>20</moves>
 			<xcoordnumber>5</xcoordnumber>
 			<ycoordnumber>5</ycoordnumber>
@@ -219,6 +220,7 @@
 			<levelid>1</levelid>
 			<scoreneeded>32300</scoreneeded>
 			<timelimit>-1</timelimit>
+			<swapcount>2</swapcount>
 			<moves>35</moves>
 			<xcoordnumber>4</xcoordnumber>
 			<ycoordnumber>7</ycoordnumber>
@@ -457,6 +459,7 @@
 			<levelid>0</levelid>
 			<scoreneeded>2000</scoreneeded>
 			<timelimit>10</timelimit>
+			<swapcount>3</swapcount>
 			<moves>20</moves>
 			<xcoordnumber>5</xcoordnumber>
 			<ycoordnumber>5</ycoordnumber>

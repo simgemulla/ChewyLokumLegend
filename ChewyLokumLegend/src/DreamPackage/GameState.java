@@ -34,13 +34,15 @@ public class GameState {
 	 * Sets the state according to the Level l.
 	 */
 	public void setState(Level l) {
-		selectedLevel = l;
-		remainingMoves = l.getMoveCount();
+		selectedLevel = l.deepClone();
+		remainingMoves = selectedLevel.getMoveCount();
 		score = 0;
 		GameWindow.getInstance().setScore(score);
 		GameWindow.getInstance().setRemainingMoves(remainingMoves);
-		GameWindow.getInstance().setScoreNeeded(l.getScoreNeeded());
-		l.startLevel();
+		GameWindow.getInstance().setScoreNeeded(selectedLevel.getScoreNeeded());
+		GameWindow.getInstance().setSpecialSwapLeft(
+				selectedLevel.getSpecialSwapCount());
+		selectedLevel.startLevel();
 	}
 
 	/**

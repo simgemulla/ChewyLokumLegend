@@ -100,6 +100,10 @@ public class GameWindow extends JFrame {
 		sb.setRemainingTime(x);
 	}
 
+	public void setSpecialSwapLeft(int x) {
+		sb.setSpecialSwapLeft(x);
+	}
+
 	protected void addButtons(final JToolBar toolBar) {
 
 		JButton button = null;

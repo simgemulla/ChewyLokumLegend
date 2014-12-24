@@ -58,6 +58,7 @@ public class XMLG {
 				int movesLeft = 0;
 				int timeLeft = 0;
 				int scoreNeeded = 0;
+				int swapLeft = 0;
 				int xMax = 0;
 				int yMax = 0;
 				Lokum[][] board = null;
@@ -73,6 +74,9 @@ public class XMLG {
 							.getTextContent());
 					timeLeft = Integer.parseInt(stateElement
 							.getElementsByTagName("timeleft").item(0)
+							.getTextContent());
+					swapLeft = Integer.parseInt(stateElement
+							.getElementsByTagName("swapleft").item(0)
 							.getTextContent());
 					score = Integer.parseInt(stateElement
 							.getElementsByTagName("currentscore").item(0)
@@ -191,10 +195,10 @@ public class XMLG {
 
 				if (timeLeft == -1) {
 					level = new NormalLevel(movesLeft, score, board,
-							scoreNeeded, levelID, false);
+							scoreNeeded, levelID, false, swapLeft);
 				} else {
 					level = new TimedLevel(movesLeft, score, board,
-							scoreNeeded, levelID, false, timeLeft);
+							scoreNeeded, levelID, false, swapLeft, timeLeft);
 				}
 
 			} catch (SAXParseException err) {
@@ -232,6 +236,8 @@ public class XMLG {
 		}
 
 		String movesleft = String.valueOf(gs.getRemainingMoves());
+		String swapleft = String.valueOf(gs.getSelectedLevel()
+				.getSpecialSwapCount());
 
 		try {
 			DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory
@@ -354,6 +360,9 @@ public class XMLG {
 			Node timeleftNode = document.createElement("timeleft");
 			timeleftNode.setTextContent(timeLeft);
 			game.appendChild(timeleftNode);
+			Node swapleftNode = document.createElement("swapleft");
+			swapleftNode.setTextContent(swapleft);
+			game.appendChild(swapleftNode);
 			Node levelNode = document.createElement("level");
 			levelNode.setTextContent(levelid);
 			game.appendChild(levelNode);
@@ -408,6 +417,7 @@ public class XMLG {
 					int scoreNeeded = 0;
 					int levelID = 0;
 					boolean locked = false;
+					int specialSwapCount = 0;
 					int xMax = 0;
 					int yMax = 0;
 
@@ -430,6 +440,9 @@ public class XMLG {
 								.getTextContent());
 						timeLimit = Integer.parseInt(levelElement
 								.getElementsByTagName("timelimit").item(0)
+								.getTextContent());
+						specialSwapCount = Integer.parseInt(levelElement
+								.getElementsByTagName("swapcount").item(0)
 								.getTextContent());
 						locked = Boolean.parseBoolean(levelElement
 								.getElementsByTagName("locked").item(0)
@@ -492,11 +505,12 @@ public class XMLG {
 					}
 					if (timeLimit == -1) {
 						levellist[s] = new NormalLevel(moveCount, highScore,
-								initialBoard, scoreNeeded, levelID, locked);
+								initialBoard, scoreNeeded, levelID, locked,
+								specialSwapCount);
 					} else {
 						levellist[s] = new TimedLevel(moveCount, highScore,
 								initialBoard, scoreNeeded, levelID, locked,
-								timeLimit);
+								specialSwapCount, timeLimit);
 					}
 				}
 			} catch (SAXParseException err) {

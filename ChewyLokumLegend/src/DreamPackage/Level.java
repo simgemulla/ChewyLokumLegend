@@ -1,5 +1,7 @@
 package DreamPackage;
 
+import GUI.GameWindow;
+
 abstract public class Level {
 
 	private int moveCount;
@@ -8,6 +10,7 @@ abstract public class Level {
 	private int scoreNeeded;
 	private boolean locked;
 	private int levelID;
+	private int specialSwapCount;
 
 	/**
 	 * Creates a Level.
@@ -22,13 +25,14 @@ abstract public class Level {
 	 *            Minimum score needed to pass the level
 	 */
 	public Level(int moveCount, int highScore, Lokum[][] initialBoard,
-			int scoreNeeded, int levelID, boolean locked) {
+			int scoreNeeded, int levelID, boolean locked, int specialSwapCount) {
 		this.moveCount = moveCount;
 		this.highScore = highScore;
 		this.initialBoard = initialBoard;
 		this.scoreNeeded = scoreNeeded;
 		this.levelID = levelID;
 		this.locked = locked;
+		this.setSpecialSwapCount(specialSwapCount);
 	}
 
 	/**
@@ -71,6 +75,20 @@ abstract public class Level {
 		this.locked = locked;
 	}
 
+	public int getSpecialSwapCount() {
+		return specialSwapCount;
+	}
+
+	private void setSpecialSwapCount(int specialSwapCount) {
+		this.specialSwapCount = specialSwapCount;
+	}
+
+	public void decreaseSpecialSwapCount(int amount) {
+		if (specialSwapCount - amount >= 0)
+			specialSwapCount -= amount;
+		GameWindow.getInstance().setSpecialSwapLeft(specialSwapCount);
+	}
+
 	public boolean repOK() {
 		if (moveCount < 1)
 			return false;
@@ -106,4 +124,9 @@ abstract public class Level {
 	}
 
 	abstract public void startLevel();
+
+	/**
+	 * @return A deep-clone of the level
+	 */
+	abstract public Level deepClone();
 }
