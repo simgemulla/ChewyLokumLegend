@@ -15,7 +15,12 @@ public class TimedLevel extends Level {
 	private ActionListener actList = new ActionListener() {
 
 		public void actionPerformed(ActionEvent arg0) {
-			decreaseRemainingTime(1);
+			if (((TimedLevel) GameState.getInstance().getSelectedLevel()).getScoreNeeded() > (GameState.getInstance().getScore() )) {
+				
+
+				decreaseRemainingTime(1);
+			}
+			
 		}
 	};
 
