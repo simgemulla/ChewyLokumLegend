@@ -461,8 +461,22 @@ public class GameBoard {
 				if (newList[i][j] == null) {
 					for (int x = j - 1; x >= 0; x--) {
 						if (newList[i][x] != null) {
-							newList[i][x + 1] = newList[i][x].createCopy();
-							newList[i][x] = null;
+							if (newList[i][x] instanceof obstacle) {
+								if (x == 0) {
+									if (newList[i][x + 1] == null)
+										newList[i][x + 1] = Lokum
+												.getRandomLokum();
+								} else {
+									if (newList[i][x - 1] != null) {
+										newList[i][x + 1] = newList[i][x - 1]
+												.createCopy();
+										newList[i][x - 1] = null;
+									}
+								}
+							} else {
+								newList[i][x + 1] = newList[i][x].createCopy();
+								newList[i][x] = null;
+							}
 						} else {
 							if (x == 0) {
 								newList[i][x] = Lokum.getRandomLokum();

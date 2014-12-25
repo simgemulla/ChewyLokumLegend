@@ -457,7 +457,7 @@
 		<level>
 			<levelid>2</levelid>
 			<scoreneeded>2000</scoreneeded>
-			<timelimit>10</timelimit>
+			<timelimit>100</timelimit>
 			<swapcount>3</swapcount>
 			<moves>20</moves>
 			<xcoordnumber>5</xcoordnumber>
