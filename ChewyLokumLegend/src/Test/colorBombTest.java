@@ -21,7 +21,7 @@ public class colorBombTest {
 	@Test
 	public void testToString() {
 		Assert.assertEquals(
-				"returns X", "X",
+				"returns X", "X ",
 				c1.toString());
 	}
 

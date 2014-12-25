@@ -14,7 +14,6 @@ public class GameBoardTest {
 
 	public static GameBoard g1;
 
-	// @BeforeClass
 	@Before
 	public void setUp() {
 		// Initializes g1, fills g1
@@ -49,8 +48,6 @@ public class GameBoardTest {
 
 		Assert.assertEquals("GameBoardTest.CheckForNormalSwap, rep  OK", true,
 				g1.repOK());
-		// if (!g1.repOK())
-		// System.out.println("Error in GameBoardTest.CheckForNormalSwap");
 
 	}
 
@@ -65,8 +62,6 @@ public class GameBoardTest {
 
 		Assert.assertEquals("GameBoardTest.CheckForDistantSwap, rep OK", true,
 				g1.repOK());
-		// if (!g1.repOK())
-		// System.out.println("Error in GameBoardTest.CheckForDistanceSwap");
 	}
 
 	@Test
@@ -83,8 +78,6 @@ public class GameBoardTest {
 				"GameBoardTest.CheckForNormalAndColorBombSwap, rep OK", true,
 				g1.repOK());
 
-		// if (!g1.repOK())
-		// System.out.println("Error in GameBoardTest.CheckForNormalAndColorBombSwap");
 	}
 
 	@Test
@@ -101,8 +94,6 @@ public class GameBoardTest {
 				"GameBoardTest.CheckForNormalAndStripedSwap, rep OK", true,
 				g1.repOK());
 
-		// if (!g1.repOK())
-		// System.out.println("Error in GameBoardTest.CheckForNormalAndStripedSwap");
 	}
 
 	@Test
@@ -119,8 +110,6 @@ public class GameBoardTest {
 				"GameBoardTest.CheckForNormalAndWrappedSwap, rep OK", true,
 				g1.repOK());
 
-		// if (!g1.repOK())
-		// System.out.println("Error in GameBoardTest.CheckForNormalAndWrappedSwap");
 	}
 
 	@Test
@@ -138,8 +127,6 @@ public class GameBoardTest {
 		Assert.assertEquals("GameBoardTest.CheckForDeleteAndFill, rep OK",
 				true, g1.repOK());
 
-		// if (!g1.repOK())
-		// System.out.println("Error in GameBoardTest.CheckForDeleteAndFill");
 	}
 
 	@Test
@@ -254,7 +241,7 @@ public class GameBoardTest {
 		asd[2][1] = new NormalLokum(Lokum.BROWN);
 		asd[2][2] = new NormalLokum(Lokum.YELLOW);
 
-		Level level1 = new NormalLevel(45, 0, asd, 1000, 0, false, 3);
+		Level level1 = new NormalLevel(45, 0, asd, 10000, 0, false, 3);
 		GameBoard.getInstance().setBoard(level1);
 		GameState.getInstance().setState(level1);
 		SelectLevelWindow.getInstance().setVisible(false);
@@ -318,7 +305,7 @@ public class GameBoardTest {
 		asd[2][1] = new NormalLokum(Lokum.RED);
 		asd[2][2] = new NormalLokum(Lokum.GREEN);
 
-		Level level1 = new NormalLevel(45, 0, asd, 1000, 0, false, 3);
+		Level level1 = new NormalLevel(45, 0, asd, 10000, 0, false, 3);
 		GameBoard.getInstance().setBoard(level1);
 		GameState.getInstance().setState(level1);
 		SelectLevelWindow.getInstance().setVisible(false);
@@ -349,7 +336,7 @@ public class GameBoardTest {
 		asd[2][1] = new NormalLokum(Lokum.RED);
 		asd[2][2] = new NormalLokum(Lokum.GREEN);
 
-		Level level1 = new NormalLevel(45, 0, asd, 1000, 0, false, 3);
+		Level level1 = new NormalLevel(45, 0, asd, 10000, 0, false, 3);
 		GameBoard.getInstance().setBoard(level1);
 		GameState.getInstance().setState(level1);
 		SelectLevelWindow.getInstance().setVisible(false);

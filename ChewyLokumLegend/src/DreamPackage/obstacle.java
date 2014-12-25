@@ -11,7 +11,7 @@ public class obstacle extends Lokum {
 	}
 
 	public String toString() {
-		return "O";
+		return "O ";
 	}
 
 	@Override

@@ -19,7 +19,7 @@ public class colorBomb extends SpecialLokum {
 	}
 
 	public String toString() {
-		return "X";
+		return "X ";
 	}
 
 	public void specialEffect(int x, int y) {

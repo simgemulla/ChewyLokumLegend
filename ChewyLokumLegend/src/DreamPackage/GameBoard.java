@@ -97,12 +97,9 @@ public class GameBoard {
 		lokumList[x2][y2] = lokum1.createCopy();
 		lokum1 = lokumList[x1][y1];
 		Lokum lokum2 = lokumList[x2][y2];
-		int temp = x1;
-		x1 = x2;
-		x2 = temp;
-		temp = y1;
-		y1 = y2;
-		y2 = temp;
+		/*
+		 * int temp = x1; x1 = x2; x2 = temp; temp = y1; y1 = y2; y2 = temp;
+		 */
 		if (lokum1 instanceof SpecialLokum && lokum2 instanceof SpecialLokum) {
 			//
 			// HAS TO CHECK FOR:
@@ -247,7 +244,6 @@ public class GameBoard {
 			}
 			// ------ 6
 			if (lokum1 instanceof colorBomb && lokum2 instanceof colorBomb) {
-
 				// System increases the score by n^2 x 100 points where ??n is
 				// the number of lokums on the entire board. Deletes all lokums
 				// on board!
@@ -298,6 +294,7 @@ public class GameBoard {
 						}
 					}
 				}
+				deleteList.add(new int[] { x1, y1 });
 				scoreEarned += count * count * 60;
 			}
 			if (lokum2 instanceof colorBomb) {
@@ -314,6 +311,7 @@ public class GameBoard {
 						}
 					}
 				}
+				deleteList.add(new int[] { x2, y2 });
 				scoreEarned += count * count * 60;
 			}
 
