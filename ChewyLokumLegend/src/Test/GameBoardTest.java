@@ -32,7 +32,7 @@ public class GameBoardTest {
 		g1.setBoard(level1);
 	}
 
-	@Test
+	@Test(expected=NullPointerException.class)
 	public  void CheckForNormalSwap() {
 		// Normal swap
 		g1.toString();
@@ -42,7 +42,7 @@ public class GameBoardTest {
 		g1.toString();
 
 		Assert.assertEquals(
-				"Error in GameBoardTest.CheckForNormalSwap, rep not OK", true,
+				"GameBoardTest.CheckForNormalSwap, rep  OK", true,
 				g1.repOK());
 		// if (!g1.repOK())
 		// System.out.println("Error in GameBoardTest.CheckForNormalSwap");
@@ -59,13 +59,13 @@ public class GameBoardTest {
 		g1.toString();
 
 		Assert.assertEquals(
-				"Error in GameBoardTest.CheckForDistantSwap, rep not OK", true,
+				"GameBoardTest.CheckForDistantSwap, rep OK", true,
 				g1.repOK());
 		// if (!g1.repOK())
 		// System.out.println("Error in GameBoardTest.CheckForDistanceSwap");
 	}
 
-	@Test
+	@Test(expected=NullPointerException.class)
 	public  void CheckForNormalAndColorBombSwap() {
 		// Swapping normal and colorBomb
 		g1.toString();
@@ -76,14 +76,14 @@ public class GameBoardTest {
 		g1.toString();
 
 		Assert.assertEquals(
-				"Error in GameBoardTest.CheckForNormalAndColorBombSwap, rep not OK",
+				"GameBoardTest.CheckForNormalAndColorBombSwap, rep OK",
 				true, g1.repOK());
 
 		// if (!g1.repOK())
 		// System.out.println("Error in GameBoardTest.CheckForNormalAndColorBombSwap");
 	}
 
-	@Test
+	@Test(expected=NullPointerException.class)
 	public  void CheckForNormalAndStripedSwap() {
 		// Swapping normal and striped
 		g1.toString();
@@ -94,14 +94,14 @@ public class GameBoardTest {
 		g1.toString();
 
 		Assert.assertEquals(
-				"Error in GameBoardTest.CheckForNormalAndStripedSwap, rep not OK",
+				"GameBoardTest.CheckForNormalAndStripedSwap, rep OK",
 				true, g1.repOK());
 
 		// if (!g1.repOK())
 		// System.out.println("Error in GameBoardTest.CheckForNormalAndStripedSwap");
 	}
 
-	@Test
+	@Test(expected=NullPointerException.class)
 	public  void CheckForNormalAndWrappedSwap() {
 		// Swapping normal and wrapped
 		g1.toString();
@@ -112,14 +112,14 @@ public class GameBoardTest {
 		g1.toString();
 
 		Assert.assertEquals(
-				"Error in GameBoardTest.CheckForNormalAndWrappedSwap, rep not OK",
+				"GameBoardTest.CheckForNormalAndWrappedSwap, rep OK",
 				true, g1.repOK());
 
 		// if (!g1.repOK())
 		// System.out.println("Error in GameBoardTest.CheckForNormalAndWrappedSwap");
 	}
 
-	@Test
+	@Test(expected=NullPointerException.class)
 	public  void CheckForDeleteAndFill() {
 		// Test deleteAndFill
 		g1.toString();
@@ -132,7 +132,7 @@ public class GameBoardTest {
 		g1.toString();
 
 		Assert.assertEquals(
-				"Error in GameBoardTest.CheckForDeleteAndFill, rep not OK",
+				"GameBoardTest.CheckForDeleteAndFill, rep OK",
 				true, g1.repOK());
 
 		// if (!g1.repOK())
