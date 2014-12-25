@@ -327,23 +327,47 @@ public class GameBoard {
 
 		System.out.println("--- New Swap ---");
 		int count = checkGroups();
-		if ((count == 0 && deleteList.size() == 0)
-				|| lokumList[x1][y1] instanceof obstacle
+
+		if (lokumList[x1][y1] instanceof obstacle
 				|| lokumList[x2][y2] instanceof obstacle) {
+
 			if (GameState.getInstance().getSelectedLevel()
 					.getSpecialSwapCount() > 0) {
+
 				GameState.getInstance().getSelectedLevel()
 						.decreaseSpecialSwapCount(1);
 				System.out.println("Special swap is allowed.");
-				System.out.println(toString());
-				GameWindow.getInstance().paintBoard();
+
+				if ((count == 0 && deleteList.size() == 0)) {
+					System.out.println(toString());
+					GameWindow.getInstance().paintBoard();
+					return;
+				}
+
 			} else {
 				Lokum a = lokumList[x1][y1].createCopy();
 				lokumList[x1][y1] = lokumList[x2][y2].createCopy();
 				lokumList[x2][y2] = a.createCopy();
+				return;
 			}
-			return;
+		} else {
+			if ((count == 0 && deleteList.size() == 0)) {
+				if (GameState.getInstance().getSelectedLevel()
+						.getSpecialSwapCount() > 0) {
+					GameState.getInstance().getSelectedLevel()
+							.decreaseSpecialSwapCount(1);
+					System.out.println("Special swap is allowed.");
+					System.out.println(toString());
+					GameWindow.getInstance().paintBoard();
+				} else {
+					Lokum a = lokumList[x1][y1].createCopy();
+					lokumList[x1][y1] = lokumList[x2][y2].createCopy();
+					lokumList[x2][y2] = a.createCopy();
+				}
+				return;
+			}
 		}
+
 		count = 1; // To enter while
 		int k = 1;
 		while (count != 0) {
