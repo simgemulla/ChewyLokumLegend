@@ -16,6 +16,7 @@ import javax.swing.JLabel;
 import DreamPackage.GameBoard;
 import DreamPackage.Lokum;
 import DreamPackage.LokumGame;
+import DreamPackage.TimedLokum;
 import DreamPackage.colorBomb;
 import DreamPackage.obstacle;
 import DreamPackage.striped;
@@ -37,19 +38,23 @@ public class Board extends JLabel {
 	private Image cocoV;
 	private Image cocoH;
 	private Image cocoW;
+	private Image cocoTimed;
 	private Image colorbomb;
 	private Image hazelnut;
 	private Image hazelnutV;
 	private Image hazelnutH;
 	private Image hazelnutW;
+	private Image hazelnutTimed;
 	private Image pistachio;
 	private Image pistachioV;
 	private Image pistachioH;
 	private Image pistachioW;
+	private Image pistachioTimed;
 	private Image redrose;
 	private Image redroseV;
 	private Image redroseH;
 	private Image redroseW;
+	private Image redroseTimed;
 
 	public Board() {
 		addMouseListener(new MouseListener() {
@@ -101,19 +106,23 @@ public class Board extends JLabel {
 			cocoV = ImageIO.read(new File("pic/coco_vstriped.png"));
 			cocoH = ImageIO.read(new File("pic/coco_hstriped.png"));
 			cocoW = ImageIO.read(new File("pic/coco_wrapped.png"));
+			cocoTimed = ImageIO.read(new File("pic/coco_timed.png"));
 			colorbomb = ImageIO.read(new File("pic/colorbomb.png"));
 			hazelnut = ImageIO.read(new File("pic/hazelnut.png"));
 			hazelnutV = ImageIO.read(new File("pic/hazelnut_vstriped.png"));
 			hazelnutH = ImageIO.read(new File("pic/hazelnut_hstriped.png"));
 			hazelnutW = ImageIO.read(new File("pic/hazelnut_wrapped.png"));
+			hazelnutTimed = ImageIO.read(new File("pic/hazelnut_timed.png"));
 			pistachio = ImageIO.read(new File("pic/pistachio.png"));
 			pistachioV = ImageIO.read(new File("pic/pistachio_vstriped.png"));
 			pistachioH = ImageIO.read(new File("pic/pistachio_hstriped.png"));
 			pistachioW = ImageIO.read(new File("pic/pistachio_wrapped.png"));
+			pistachioTimed = ImageIO.read(new File("pic/pistachio_timed.png"));
 			redrose = ImageIO.read(new File("pic/red_rose.png"));
 			redroseV = ImageIO.read(new File("pic/red_rose_vstriped.png"));
 			redroseH = ImageIO.read(new File("pic/red_rose_hstriped.png"));
 			redroseW = ImageIO.read(new File("pic/red_rose_wrapped.png"));
+			redroseTimed = ImageIO.read(new File("pic/red_rose_timed.png"));
 		} catch (IOException ie) {
 
 		}
@@ -166,6 +175,10 @@ public class Board extends JLabel {
 			paintObstacle(CELL_SIZE * i + (CELL_SIZE - LOKUM_SIZE) / 2,
 					CELL_SIZE * j + (CELL_SIZE - LOKUM_SIZE) / 2,
 					(obstacle) lok, image);
+		} else if (lok instanceof TimedLokum) {
+			paintTimedLokum(CELL_SIZE * i + (CELL_SIZE - LOKUM_SIZE) / 2,
+					CELL_SIZE * j + (CELL_SIZE - LOKUM_SIZE) / 2,
+					(TimedLokum) lok, image);
 		} else {
 			paintNormal(CELL_SIZE * i + (CELL_SIZE - LOKUM_SIZE) / 2, CELL_SIZE
 					* j + (CELL_SIZE - LOKUM_SIZE) / 2, lok, image);
@@ -294,6 +307,24 @@ public class Board extends JLabel {
 				image.setRGB(i + k, j + l, color);
 			}
 		}
+
+	}
+
+	public void paintTimedLokum(int i, int j, TimedLokum lok,
+			BufferedImage image) {
+		Graphics2D g2d = image.createGraphics();
+		g2d.clipRect(i, j, LOKUM_SIZE, LOKUM_SIZE);
+
+		if (lok.getColor().equals(Lokum.RED))
+			g2d.drawImage(redroseTimed, i, j, null);
+		if (lok.getColor().equals(Lokum.YELLOW))
+			g2d.drawImage(hazelnutTimed, i, j, null);
+		if (lok.getColor().equals(Lokum.BROWN))
+			g2d.drawImage(cocoTimed, i, j, null);
+		if (lok.getColor().equals(Lokum.GREEN))
+			g2d.drawImage(pistachioTimed, i, j, null);
+
+		g2d.dispose();
 
 	}
 
