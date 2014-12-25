@@ -10,8 +10,8 @@
                   <xs:sequence>
                     <xs:element type="xs:byte" name="levelid"/>
                     <xs:element type="xs:short" name="scoreneeded"/>
-	   <xs:element type="xs:byte" name="timelimit"/>
-<xs:element name="swapcount" type="xs:byte"/>
+                    <xs:element type="xs:byte" name="timelimit"/>
+                    <xs:element type="xs:byte" name="swapcount"/>
                     <xs:element type="xs:byte" name="moves"/>
                     <xs:element type="xs:byte" name="xcoordnumber"/>
                     <xs:element type="xs:byte" name="ycoordnumber"/>
@@ -36,6 +36,26 @@
                                         </xs:complexType>
                                       </xs:element>
                                       <xs:element type="xs:string" name="type"/>
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="obstacles" maxOccurs="unbounded" minOccurs="0">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="obstacle">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element name="position">
+                                        <xs:complexType>
+                                          <xs:sequence>
+                                            <xs:element type="xs:byte" name="xcoord"/>
+                                            <xs:element type="xs:byte" name="ycoord"/>
+                                          </xs:sequence>
+                                        </xs:complexType>
+                                      </xs:element>
                                     </xs:sequence>
                                   </xs:complexType>
                                 </xs:element>

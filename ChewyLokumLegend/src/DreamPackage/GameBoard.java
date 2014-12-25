@@ -85,9 +85,10 @@ public class GameBoard {
 			return;
 
 		// OBSTACLE CHECK
-		if (lokumList[x1][y1] instanceof obstacle
-				|| lokumList[x2][y2] instanceof obstacle)
-			return;
+		/*
+		 * if (lokumList[x1][y1] instanceof obstacle || lokumList[x2][y2]
+		 * instanceof obstacle) return;
+		 */
 		// OBSTACLE CHECK
 		int scoreEarned = 0;
 
@@ -328,7 +329,9 @@ public class GameBoard {
 
 		System.out.println("--- New Swap ---");
 		int count = checkGroups();
-		if (count == 0 && deleteList.size() == 0) {
+		if ((count == 0 && deleteList.size() == 0)
+				|| lokumList[x1][y1] instanceof obstacle
+				|| lokumList[x2][y2] instanceof obstacle) {
 			if (GameState.getInstance().getSelectedLevel()
 					.getSpecialSwapCount() > 0) {
 				GameState.getInstance().getSelectedLevel()
@@ -336,7 +339,6 @@ public class GameBoard {
 				System.out.println("Special swap is allowed.");
 				System.out.println(toString());
 				GameWindow.getInstance().paintBoard();
-				return;
 			} else {
 				Lokum a = lokumList[x1][y1].createCopy();
 				lokumList[x1][y1] = lokumList[x2][y2].createCopy();

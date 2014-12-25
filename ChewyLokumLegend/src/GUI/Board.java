@@ -55,6 +55,7 @@ public class Board extends JLabel {
 	private Image redroseH;
 	private Image redroseW;
 	private Image redroseTimed;
+	private Image obstacle;
 
 	public Board() {
 		addMouseListener(new MouseListener() {
@@ -123,6 +124,7 @@ public class Board extends JLabel {
 			redroseH = ImageIO.read(new File("pic/red_rose_hstriped.png"));
 			redroseW = ImageIO.read(new File("pic/red_rose_wrapped.png"));
 			redroseTimed = ImageIO.read(new File("pic/red_rose_timed.png"));
+			obstacle = ImageIO.read(new File("pic/obstacle.png"));
 		} catch (IOException ie) {
 
 		}
@@ -186,13 +188,6 @@ public class Board extends JLabel {
 	}
 
 	public void paintNormal(int i, int j, Lokum lok, BufferedImage image) {
-
-		/*
-		 * int color = lok.getColor().getRGB(); for (int l = 0; l < LOKUM_SIZE;
-		 * l++) { for (int k = 0; k < LOKUM_SIZE; k++) { image.setRGB(i + k, j +
-		 * l, color); } }
-		 */
-
 		Graphics2D g2d = image.createGraphics();
 		g2d.clipRect(i, j, LOKUM_SIZE, LOKUM_SIZE);
 
@@ -210,29 +205,6 @@ public class Board extends JLabel {
 	}
 
 	public void paintStriped(int i, int j, striped lok, BufferedImage image) {
-		/*
-		 * int color = lok.getColor().getRGB(); if (lok.getOrientation() ==
-		 * striped.HORIZONTAL) { for (int l = 0; l < LOKUM_SIZE; l++) { for (int
-		 * k = 0; k < LOKUM_SIZE; k++) { if (k == 0 || l == 0 || k == LOKUM_SIZE
-		 * - 1 || l == LOKUM_SIZE - 1) { image.setRGB(i + k, j + l, color);
-		 * image.setRGB(i + k, j + l + 1, color); continue; } if (l % 4 == 0) {
-		 * image.setRGB(i + k, j + l, color); image.setRGB(i + k, j + l + 1,
-		 * color); } else if (l % 4 > 1) { image.setRGB(i + k, j + l,
-		 * Color.white.getRGB()); image.setRGB(i + k, j + l + 1,
-		 * Color.white.getRGB()); } }
-		 * 
-		 * } } else { for (int k = 0; k < LOKUM_SIZE; k++) { for (int l = 0; l <
-		 * LOKUM_SIZE; l++) { if (k == 0 || l == 0 || k == LOKUM_SIZE - 1 || l
-		 * == LOKUM_SIZE - 1) { image.setRGB(i + k, j + l, color);
-		 * image.setRGB(i + k + 1, j + l, color); continue; } if (k % 4 == 0) {
-		 * image.setRGB(i + k, j + l, color); image.setRGB(i + k + 1, j + l,
-		 * color); } else if (k % 4 > 1) { image.setRGB(i + k, j + l,
-		 * Color.white.getRGB()); image.setRGB(i + k + 1, j + l,
-		 * Color.white.getRGB()); } }
-		 * 
-		 * } }
-		 */
-
 		Graphics2D g2d = image.createGraphics();
 		g2d.clipRect(i, j, LOKUM_SIZE, LOKUM_SIZE);
 		if (lok.getOrientation() == striped.HORIZONTAL) {
@@ -258,13 +230,6 @@ public class Board extends JLabel {
 	}
 
 	public void paintWrapped(int i, int j, wrapped lok, BufferedImage image) {
-		/*
-		 * int color = lok.getColor().getRGB(); for (int l = 0; l < LOKUM_SIZE;
-		 * l++) { for (int k = 0; k < LOKUM_SIZE; k++) { if (l < 5 || k < 5 || l
-		 * >= LOKUM_SIZE - 5 || k >= LOKUM_SIZE - 5) { image.setRGB(i + k, j +
-		 * l, color); } else { image.setRGB(i + k, j + l, Color.white.getRGB());
-		 * } } }
-		 */
 		int xDiff = (redroseW.getWidth(null) - LOKUM_SIZE) / 2;
 		int yDiff = (redroseW.getHeight(null) - LOKUM_SIZE) / 2;
 		Graphics2D g2d = image.createGraphics();
@@ -284,13 +249,6 @@ public class Board extends JLabel {
 	}
 
 	public void paintColorBomb(int i, int j, colorBomb lok, BufferedImage image) {
-		/*
-		 * int color = lok.getColor().getRGB(); for (int l = 0; l < LOKUM_SIZE;
-		 * l++) { for (int k = 0; k < LOKUM_SIZE; k++) { if (Math.pow(k - 10, 2)
-		 * + Math.pow(l - 10, 2) <= 100) { image.setRGB(i + k, j + l, color); }
-		 * else { image.setRGB(i + k, j + l, Color.white.getRGB()); } } }
-		 */
-
 		Graphics2D g2d = image.createGraphics();
 		g2d.clipRect(i, j, LOKUM_SIZE, LOKUM_SIZE);
 
@@ -300,13 +258,12 @@ public class Board extends JLabel {
 	}
 
 	public void paintObstacle(int i, int j, obstacle lok, BufferedImage image) {
+		Graphics2D g2d = image.createGraphics();
+		g2d.clipRect(i, j, LOKUM_SIZE, LOKUM_SIZE);
 
-		int color = lok.getColor().getRGB();
-		for (int l = 0; l < LOKUM_SIZE; l++) {
-			for (int k = 0; k < LOKUM_SIZE; k++) {
-				image.setRGB(i + k, j + l, color);
-			}
-		}
+		g2d.drawImage(obstacle, i, j, null);
+
+		g2d.dispose();
 
 	}
 
@@ -329,16 +286,6 @@ public class Board extends JLabel {
 	}
 
 	public void selectCell(int x, int y) {
-		/*
-		 * int color = GameBoard.getInstance().getLokumList()[x][y].getColor()
-		 * .darker().getRGB(); for (int k = 0; k < CELL_SIZE; k++) { for (int l
-		 * = 0; l < CELL_SIZE; l++) { if (k == 0 || l == 0) {
-		 * image.setRGB(CELL_SIZE * x + k, CELL_SIZE * y + l,
-		 * Color.black.getRGB()); image.setRGB(CELL_SIZE * x + k, CELL_SIZE * y
-		 * + l, Color.red.getRGB()); continue; } image.setRGB(CELL_SIZE * x + k,
-		 * CELL_SIZE * y + l, color); } }
-		 */
-
 		for (int k = 0; k < CELL_SIZE; k++) {
 			image.setRGB(CELL_SIZE * x + k, CELL_SIZE * y, Color.red.getRGB());
 			image.setRGB(CELL_SIZE * x + k, CELL_SIZE * (y + 1),
@@ -353,9 +300,6 @@ public class Board extends JLabel {
 	}
 
 	public void deselectCell(int x, int y) {
-		// paintLokum(x, y, GameBoard.getInstance().getLokumList()[x][y],
-		// image);
-
 		for (int k = 0; k < CELL_SIZE; k++) {
 			image.setRGB(CELL_SIZE * x + k, CELL_SIZE * y, Color.black.getRGB());
 			image.setRGB(CELL_SIZE * x + k, CELL_SIZE * (y + 1),
@@ -371,15 +315,7 @@ public class Board extends JLabel {
 		for (int[] a : GameBoard.getInstance().getDeleteList()) {
 			int x = a[0];
 			int y = a[1];
-			/*
-			 * int color =
-			 * GameBoard.getInstance().getLokumList()[x][y].getColor()
-			 * .darker().getRGB(); for (int k = 0; k < CELL_SIZE; k++) { for
-			 * (int l = 0; l < CELL_SIZE; l++) { if (k == 0 || l == 0) {
-			 * image.setRGB(CELL_SIZE * x + k, CELL_SIZE * y + l,
-			 * Color.black.getRGB()); continue; } image.setRGB(CELL_SIZE * x +
-			 * k, CELL_SIZE * y + l, color); } }
-			 */
+			
 			for (int k = 0; k < CELL_SIZE; k++) {
 				image.setRGB(CELL_SIZE * x + k, CELL_SIZE * y,
 						Color.green.getRGB());

@@ -90,13 +90,12 @@ public class TimedLevel extends Level {
 	 *            The decrease amount
 	 */
 	public void decreaseRemainingTime(int amount) {
-		if (remainingTime - amount > 0) {
-			remainingTime -= amount;
-		} else {
+		remainingTime -= amount;
+		GameWindow.getInstance().setRemainingTime(remainingTime);
+		if (remainingTime <= 0) {
 			timer.stop();
 			LokumGame.getInstance().gameOver(false);
 		}
-		GameWindow.getInstance().setRemainingTime(remainingTime);
 	}
 
 	@Override
