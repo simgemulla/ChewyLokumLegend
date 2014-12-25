@@ -131,6 +131,7 @@ public class GameBoardTest {
 
 	@Test
 	public void TestSwap1() {
+		// Test for swapping normal lokums
 
 		g1 = GameBoard.getInstance();
 		Lokum[][] asd = new Lokum[3][3];
@@ -165,6 +166,7 @@ public class GameBoardTest {
 
 	@Test
 	public void TestSwap2() {
+		// Test for swapping normal lokums
 
 		g1 = GameBoard.getInstance();
 		Lokum[][] asd = new Lokum[3][3];
@@ -199,6 +201,8 @@ public class GameBoardTest {
 
 	@Test
 	public void TestSwap3() {
+		// Test for swapping diagonally and multiple groups of three lokums
+
 		g1 = GameBoard.getInstance();
 		Lokum[][] asd = new Lokum[3][3];
 		asd[0][0] = new NormalLokum(Lokum.GREEN);
@@ -229,6 +233,9 @@ public class GameBoardTest {
 
 	@Test
 	public void TestSwap4() {
+		// Test for swapping horizontally striped lokum with a normal lokum and
+		// for deleting horizontally striped lokum.
+
 		g1 = GameBoard.getInstance();
 		Lokum[][] asd = new Lokum[3][3];
 		asd[0][0] = new NormalLokum(Lokum.BROWN);
@@ -260,6 +267,8 @@ public class GameBoardTest {
 
 	@Test
 	public void TestSwap5() {
+		// Test for swapping vertically striped lokum with a normal lokum and
+		// for deleting vertically striped lokum.
 
 		g1 = GameBoard.getInstance();
 		Lokum[][] asd = new Lokum[3][3];
@@ -292,6 +301,7 @@ public class GameBoardTest {
 
 	@Test
 	public void TestSwap6() {
+		// Test for swapping colorBomb and normal lokum.
 
 		g1 = GameBoard.getInstance();
 		Lokum[][] asd = new Lokum[3][3];
@@ -324,6 +334,8 @@ public class GameBoardTest {
 
 	@Test
 	public void TestSwap7() {
+		// Test for swapping wrapped and normal lokum.
+
 		g1 = GameBoard.getInstance();
 		Lokum[][] asd = new Lokum[3][3];
 		asd[0][0] = new NormalLokum(Lokum.GREEN);
@@ -356,6 +368,7 @@ public class GameBoardTest {
 
 	@Test
 	public void TestSwap8() {
+		// Test for swapping obstacle when there is no specialSwap left.
 
 		g1 = GameBoard.getInstance();
 		Lokum[][] asd = new Lokum[3][3];
@@ -393,8 +406,83 @@ public class GameBoardTest {
 		Assert.assertTrue(g1.repOK());
 	}
 
-	@Test
 	public void TestSwap9() {
+		// Tests if it is possible to swap an obstacle to create a group of
+		// three lokums when specialSwapCount>0.
+
+		g1 = GameBoard.getInstance();
+		Lokum[][] asd = new Lokum[3][3];
+		asd[0][0] = new NormalLokum(Lokum.GREEN);
+		asd[0][1] = new NormalLokum(Lokum.GREEN);
+		asd[0][2] = new obstacle();
+		asd[1][0] = new NormalLokum(Lokum.RED);
+		asd[1][1] = new NormalLokum(Lokum.YELLOW);
+		asd[1][2] = new NormalLokum(Lokum.GREEN);
+		asd[2][0] = new NormalLokum(Lokum.BROWN);
+		asd[2][1] = new NormalLokum(Lokum.RED);
+		asd[2][2] = new NormalLokum(Lokum.GREEN);
+
+		Level level1 = new NormalLevel(45, 0, asd, 1000, 0, false, 1);
+		GameBoard.getInstance().setBoard(level1);
+		GameState.getInstance().setState(level1);
+		SelectLevelWindow.getInstance().setVisible(false);
+		GameWindow gw = GameWindow.getInstance();
+		gw.paintBoard();
+
+		g1.swapLokums(0, 2, 1, 2);
+
+		Assert.assertEquals(g1.getLokumList()[1][0].getColor(), Lokum.RED);
+		Assert.assertEquals(g1.getLokumList()[1][1].getColor(), Lokum.YELLOW);
+		Assert.assertTrue(g1.getLokumList()[1][2] instanceof obstacle);
+		Assert.assertEquals(g1.getLokumList()[2][0].getColor(), Lokum.BROWN);
+		Assert.assertEquals(g1.getLokumList()[2][1].getColor(), Lokum.RED);
+		Assert.assertEquals(g1.getLokumList()[2][2].getColor(), Lokum.GREEN);
+		Assert.assertTrue(GameState.getInstance().getScore() > 0);
+		Assert.assertTrue(g1.repOK());
+
+	}
+
+	public void TestSwap10() {
+		// Tests if it is possible to swap an obstacle without creating any
+		// groups of three lokums when specialSwapCount>0.
+
+		g1 = GameBoard.getInstance();
+		Lokum[][] asd = new Lokum[3][3];
+		asd[0][0] = new NormalLokum(Lokum.RED);
+		asd[0][1] = new NormalLokum(Lokum.YELLOW);
+		asd[0][2] = new NormalLokum(Lokum.BROWN);
+		asd[1][0] = new NormalLokum(Lokum.GREEN);
+		asd[1][1] = new NormalLokum(Lokum.RED);
+		asd[1][2] = new obstacle();
+		asd[2][0] = new NormalLokum(Lokum.YELLOW);
+		asd[2][1] = new NormalLokum(Lokum.GREEN);
+		asd[2][2] = new NormalLokum(Lokum.BROWN);
+
+		Level level1 = new NormalLevel(45, 0, asd, 1000, 0, false, 1);
+		GameBoard.getInstance().setBoard(level1);
+		GameState.getInstance().setState(level1);
+		SelectLevelWindow.getInstance().setVisible(false);
+		GameWindow gw = GameWindow.getInstance();
+		gw.paintBoard();
+
+		g1.swapLokums(1, 2, 2, 2);
+
+		Assert.assertEquals(g1.getLokumList()[0][0].getColor(), Lokum.RED);
+		Assert.assertEquals(g1.getLokumList()[0][1].getColor(), Lokum.YELLOW);
+		Assert.assertEquals(g1.getLokumList()[0][2].getColor(), Lokum.BROWN);
+		Assert.assertEquals(g1.getLokumList()[1][0].getColor(), Lokum.GREEN);
+		Assert.assertEquals(g1.getLokumList()[1][1].getColor(), Lokum.RED);
+		Assert.assertTrue(g1.getLokumList()[1][2] instanceof obstacle);
+		Assert.assertEquals(g1.getLokumList()[2][0].getColor(), Lokum.YELLOW);
+		Assert.assertEquals(g1.getLokumList()[2][1].getColor(), Lokum.GREEN);
+		Assert.assertEquals(g1.getLokumList()[2][2].getColor(), Lokum.BROWN);
+		Assert.assertTrue(GameState.getInstance().getScore() == 0);
+		Assert.assertTrue(g1.repOK());
+	}
+
+	@Test
+	public void TestSwap11() {
+		// Test for deleting a group below an obstacle. Obstacle shouldn't move.
 
 		g1 = GameBoard.getInstance();
 		Lokum[][] asd = new Lokum[3][3];
@@ -423,6 +511,73 @@ public class GameBoardTest {
 		Assert.assertEquals(g1.getLokumList()[1][2].getColor(), Lokum.YELLOW);
 		Assert.assertEquals(g1.getLokumList()[2][1].getColor(), Lokum.YELLOW);
 		Assert.assertEquals(g1.getLokumList()[2][2].getColor(), Lokum.BROWN);
+		Assert.assertTrue(g1.repOK());
+	}
+
+	@Test
+	public void TestDeletingTimeLokum() {
+		// Test for deleting a timedLokum.
+
+		g1 = GameBoard.getInstance();
+		Lokum[][] asd = new Lokum[3][3];
+		asd[0][0] = new NormalLokum(Lokum.RED);
+		asd[0][1] = new NormalLokum(Lokum.RED);
+		asd[0][2] = new NormalLokum(Lokum.GREEN);
+		asd[1][0] = new NormalLokum(Lokum.BROWN);
+		asd[1][1] = new TimedLokum(Lokum.GREEN);
+		asd[1][2] = new NormalLokum(Lokum.YELLOW);
+		asd[2][0] = new NormalLokum(Lokum.YELLOW);
+		asd[2][1] = new NormalLokum(Lokum.BROWN);
+		asd[2][2] = new NormalLokum(Lokum.GREEN);
+
+		Level level1 = new TimedLevel(45, 0, asd, 10000, 0, false, 0, 15);
+		GameBoard.getInstance().setBoard(level1);
+		GameState.getInstance().setState(level1);
+		SelectLevelWindow.getInstance().setVisible(false);
+		GameWindow gw = GameWindow.getInstance();
+		gw.paintBoard();
+
+		int a = ((TimedLevel) GameState.getInstance().getSelectedLevel())
+				.getRemainingTime();
+		g1.swapLokums(1, 1, 1, 2);
+
+		int b = ((TimedLevel) GameState.getInstance().getSelectedLevel())
+				.getRemainingTime();
+
+		((TimedLevel) GameState.getInstance().getSelectedLevel()).quitLevel();
+
+		Assert.assertTrue(b > a);
+		Assert.assertTrue(g1.repOK());
+
+	}
+
+	@Test
+	public void TestScore() {
+		// Test for score calculation when a group of three lokums is deleted.
+
+		g1 = GameBoard.getInstance();
+		Lokum[][] asd = new Lokum[3][3];
+		asd[0][0] = new NormalLokum(Lokum.GREEN);
+		asd[0][1] = new NormalLokum(Lokum.GREEN);
+		asd[0][2] = new NormalLokum(Lokum.RED);
+		asd[1][0] = new NormalLokum(Lokum.RED);
+		asd[1][1] = new NormalLokum(Lokum.YELLOW);
+		asd[1][2] = new NormalLokum(Lokum.GREEN);
+		asd[2][0] = new NormalLokum(Lokum.BROWN);
+		asd[2][1] = new NormalLokum(Lokum.RED);
+		asd[2][2] = new NormalLokum(Lokum.GREEN);
+
+		Level level1 = new NormalLevel(45, 0, asd, 1000, 0, false, 3);
+		GameBoard.getInstance().setBoard(level1);
+		GameState.getInstance().setState(level1);
+		SelectLevelWindow.getInstance().setVisible(false);
+		GameWindow gw = GameWindow.getInstance();
+		gw.paintBoard();
+
+		g1.swapLokums(0, 2, 1, 2);
+
+		Assert.assertTrue(GameState.getInstance().getScore() >= 60);
+
 		Assert.assertTrue(g1.repOK());
 	}
 
