@@ -138,5 +138,201 @@ public class GameBoardTest {
 		// if (!g1.repOK())
 		// System.out.println("Error in GameBoardTest.CheckForDeleteAndFill");
 	}
+	@Test(expected=NullPointerException.class)
+	public void TestSwap1() {
+
+		g1 = GameBoard.getInstance();
+		Lokum[][] asd = new Lokum[3][3];
+		asd[0][0] = new NormalLokum(Lokum.GREEN);
+		asd[0][1] = new NormalLokum(Lokum.GREEN);
+		asd[0][2] = new NormalLokum(Lokum.RED);
+		asd[1][0] = new NormalLokum(Lokum.RED);
+		asd[1][1] = new NormalLokum(Lokum.YELLOW);
+		asd[1][2] = new NormalLokum(Lokum.GREEN);
+		asd[2][0] = new NormalLokum(Lokum.BROWN);
+		asd[2][1] = new NormalLokum(Lokum.RED);
+		asd[2][2] = new NormalLokum(Lokum.GREEN);
+
+		Level level1 = new NormalLevel(45, 0, asd, 1000, 0, false, 3);
+		g1.setBoard(level1);
+
+		g1.swapLokums(0, 2, 1, 2);
+
+		Assert.assertEquals(g1.getLokumList()[1][2].getColor(), Lokum.RED);
+		Assert.assertEquals(g1.getLokumList()[1][1].getColor(), Lokum.YELLOW);
+		Assert.assertEquals(g1.getLokumList()[1][0].getColor(), Lokum.RED);
+		Assert.assertEquals(g1.getLokumList()[2][2].getColor(), Lokum.GREEN);
+		Assert.assertEquals(g1.getLokumList()[2][1].getColor(), Lokum.RED);
+		Assert.assertEquals(g1.getLokumList()[2][0].getColor(), Lokum.BROWN);
+
+		Assert.assertTrue(g1.repOK());
+	}
+
+	@Test(expected=NullPointerException.class)
+	public void TestSwap2() {
+
+		g1 = GameBoard.getInstance();
+		Lokum[][] asd = new Lokum[3][3];
+		asd[0][0] = new NormalLokum(Lokum.BROWN);
+		asd[0][1] = new NormalLokum(Lokum.RED);
+		asd[0][2] = new NormalLokum(Lokum.BROWN);
+		asd[1][0] = new NormalLokum(Lokum.YELLOW);
+		asd[1][1] = new NormalLokum(Lokum.GREEN);
+		asd[1][2] = new NormalLokum(Lokum.GREEN);
+		asd[2][0] = new NormalLokum(Lokum.GREEN);
+		asd[2][1] = new NormalLokum(Lokum.BROWN);
+		asd[2][2] = new NormalLokum(Lokum.YELLOW);
+
+		Level level1 = new NormalLevel(45, 0, asd, 1000, 0, false, 3);
+		g1.setBoard(level1);
+
+		g1.swapLokums(1, 0, 2, 0);
+
+		Assert.assertEquals(g1.getLokumList()[0][0].getColor(), Lokum.BROWN);
+		Assert.assertEquals(g1.getLokumList()[0][1].getColor(), Lokum.RED);
+		Assert.assertEquals(g1.getLokumList()[0][2].getColor(), Lokum.BROWN);
+		Assert.assertEquals(g1.getLokumList()[2][0].getColor(), Lokum.YELLOW);
+		Assert.assertEquals(g1.getLokumList()[2][1].getColor(), Lokum.BROWN);
+		Assert.assertEquals(g1.getLokumList()[2][2].getColor(), Lokum.YELLOW);
+		
+		Assert.assertTrue(g1.repOK());
+	}
+
+	@Test(expected=NullPointerException.class)
+	public void TestSwap3() {
+		g1 = GameBoard.getInstance();
+		Lokum[][] asd = new Lokum[3][3];
+		asd[0][0] = new NormalLokum(Lokum.GREEN);
+		asd[0][1] = new NormalLokum(Lokum.GREEN);
+		asd[0][2] = new NormalLokum(Lokum.RED);
+		asd[1][0] = new NormalLokum(Lokum.BROWN);
+		asd[1][1] = new NormalLokum(Lokum.GREEN);
+		asd[1][2] = new NormalLokum(Lokum.GREEN);
+		asd[2][0] = new NormalLokum(Lokum.RED);
+		asd[2][1] = new NormalLokum(Lokum.YELLOW);
+		asd[2][2] = new NormalLokum(Lokum.GREEN);
+
+		Level level1 = new NormalLevel(45, 0, asd, 1000, 0, false, 3);
+		g1.setBoard(level1);
+
+		g1.swapLokums(0, 2, 1, 1);
+
+		Assert.assertEquals(g1.getLokumList()[1][1].getColor(), Lokum.BROWN);
+		Assert.assertEquals(g1.getLokumList()[1][2].getColor(), Lokum.RED);
+		Assert.assertEquals(g1.getLokumList()[2][1].getColor(), Lokum.RED);
+		Assert.assertEquals(g1.getLokumList()[2][2].getColor(), Lokum.YELLOW);
+		Assert.assertTrue(g1.repOK());
+	}
+
+	@Test(expected=NullPointerException.class)
+	public void TestSwap4() {
+		g1 = GameBoard.getInstance();
+		Lokum[][] asd = new Lokum[3][3];
+		asd[0][0] = new NormalLokum(Lokum.BROWN);
+		asd[0][1] = new NormalLokum(Lokum.RED);
+		asd[0][2] = new NormalLokum(Lokum.BROWN);
+		asd[1][0] = new NormalLokum(Lokum.YELLOW);
+		asd[1][1] = new NormalLokum(Lokum.GREEN);
+		asd[1][2] = new NormalLokum(Lokum.GREEN);
+		asd[2][0] = new striped(Lokum.GREEN, striped.HORIZONTAL);
+		asd[2][1] = new NormalLokum(Lokum.BROWN);
+		asd[2][2] = new NormalLokum(Lokum.YELLOW);
+
+		Level level1 = new NormalLevel(45, 0, asd, 1000, 0, false, 3);
+		g1.setBoard(level1);
+
+		g1.swapLokums(2, 0, 1, 0);
+
+		Assert.assertEquals(g1.getLokumList()[0][1].getColor(), Lokum.RED);
+		Assert.assertEquals(g1.getLokumList()[0][2].getColor(), Lokum.BROWN);
+		Assert.assertEquals(g1.getLokumList()[2][1].getColor(), Lokum.BROWN);
+		Assert.assertEquals(g1.getLokumList()[2][2].getColor(), Lokum.YELLOW);
+		Assert.assertTrue(g1.repOK());
+
+	}
+
+	@Test(expected=NullPointerException.class)
+	public void TestSwap5() {
+
+		g1 = GameBoard.getInstance();
+		Lokum[][] asd = new Lokum[3][3];
+		asd[0][0] = new NormalLokum(Lokum.YELLOW);
+		asd[0][1] = new striped(Lokum.RED, striped.VERTICAL);
+		asd[0][2] = new NormalLokum(Lokum.BROWN);
+		asd[1][0] = new NormalLokum(Lokum.GREEN);
+		asd[1][1] = new NormalLokum(Lokum.YELLOW);
+		asd[1][2] = new NormalLokum(Lokum.RED);
+		asd[2][0] = new NormalLokum(Lokum.RED);
+		asd[2][1] = new NormalLokum(Lokum.BROWN);
+		asd[2][2] = new NormalLokum(Lokum.RED);
+
+		Level level1 = new NormalLevel(45, 0, asd, 1000, 0, false, 3);
+		g1.setBoard(level1);
+
+		g1.swapLokums(0, 1, 0, 2);
+
+		Assert.assertEquals(g1.getLokumList()[1][1].getColor(), Lokum.GREEN);
+		Assert.assertEquals(g1.getLokumList()[1][2].getColor(), Lokum.YELLOW);
+		Assert.assertEquals(g1.getLokumList()[2][1].getColor(), Lokum.RED);
+		Assert.assertEquals(g1.getLokumList()[2][2].getColor(), Lokum.BROWN);
+		Assert.assertTrue(g1.repOK());
+
+	}
+
+	@Test(expected=NullPointerException.class)
+	public void TestSwap6() {
+
+		g1 = GameBoard.getInstance();
+		Lokum[][] asd = new Lokum[3][3];
+		asd[0][0] = new NormalLokum(Lokum.GREEN);
+		asd[0][1] = new NormalLokum(Lokum.GREEN);
+		asd[0][2] = new colorBomb();
+		asd[1][0] = new NormalLokum(Lokum.RED);
+		asd[1][1] = new NormalLokum(Lokum.YELLOW);
+		asd[1][2] = new NormalLokum(Lokum.GREEN);
+		asd[2][0] = new NormalLokum(Lokum.BROWN);
+		asd[2][1] = new NormalLokum(Lokum.RED);
+		asd[2][2] = new NormalLokum(Lokum.GREEN);
+
+		Level level1 = new NormalLevel(45, 0, asd, 1000, 0, false, 3);
+		g1.setBoard(level1);
+
+		g1.swapLokums(0, 2, 0, 1);
+		Assert.assertEquals(g1.getLokumList()[1][1].getColor(), Lokum.RED);
+		Assert.assertEquals(g1.getLokumList()[1][2].getColor(), Lokum.YELLOW);
+		Assert.assertEquals(g1.getLokumList()[2][1].getColor(), Lokum.BROWN);
+		Assert.assertEquals(g1.getLokumList()[2][2].getColor(), Lokum.RED);
+		Assert.assertTrue(g1.repOK());
+
+	}
+	
+	
+	@Test(expected=NullPointerException.class)
+	public void TestSwap7() {
+		g1 = GameBoard.getInstance();
+		Lokum[][] asd = new Lokum[3][3];
+		asd[0][0] = new NormalLokum(Lokum.GREEN);
+		asd[0][1] = new wrapped(Lokum.GREEN);
+		asd[0][2] = new NormalLokum(Lokum.RED);
+		asd[1][0] = new NormalLokum(Lokum.RED);
+		asd[1][1] = new NormalLokum(Lokum.YELLOW);
+		asd[1][2] = new NormalLokum(Lokum.GREEN);
+		asd[2][0] = new NormalLokum(Lokum.BROWN);
+		asd[2][1] = new NormalLokum(Lokum.RED);
+		asd[2][2] = new NormalLokum(Lokum.GREEN);
+
+		Level level1 = new NormalLevel(45, 0, asd, 1000, 0, false, 3);
+		g1.setBoard(level1);
+
+		g1.swapLokums(0, 2, 0, 1);
+		Assert.assertEquals(g1.getLokumList()[0][1].getColor(), Lokum.GREEN);
+		Assert.assertEquals(g1.getLokumList()[0][2].getColor(), Lokum.RED);
+		Assert.assertEquals(g1.getLokumList()[1][1].getColor(), Lokum.RED);
+		Assert.assertEquals(g1.getLokumList()[1][2].getColor(), Lokum.YELLOW);
+		Assert.assertEquals(g1.getLokumList()[2][1].getColor(), Lokum.BROWN);
+		Assert.assertEquals(g1.getLokumList()[2][2].getColor(), Lokum.RED);
+		Assert.assertTrue(g1.repOK());
+
+	}
 
 }
