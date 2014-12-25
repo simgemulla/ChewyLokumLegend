@@ -25,4 +25,9 @@ public class colorBomb extends SpecialLokum {
 	public void specialEffect(int x, int y) {
 	}
 
+	public Color colorBombColor() {
+		// TODO Auto-generated method stub
+		return colorBombColor;
+	}
+
 }

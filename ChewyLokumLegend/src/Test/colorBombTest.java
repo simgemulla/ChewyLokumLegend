@@ -27,17 +27,31 @@ public class colorBombTest {
 
 	@Test
 	public void testSpecialEffect() {
-		fail("Not yet implemented");
 	}
 
 	@Test
 	public void testColorBomb() {
-		fail("Not yet implemented");
 	}
 
 	@Test
 	public void testCreateCopy() {
-		fail("Not yet implemented");
+		Assert.assertEquals(
+				"It is same with the obstacle", true,
+				testCreateCopyHelper());
+		
+		
 	}
 
+	
+
+	private boolean testCreateCopyHelper() {
+		if (c1.colorBombColor() == c1.createCopy().getColor() && c1.createCopy().repOK())
+		{
+			return true;
+			
+		}
+		
+		else return false;
+		
+	}
 }
