@@ -109,6 +109,7 @@ public class TimedLevel extends Level {
 	@Override
 	public void quitLevel() {
 		timer.stop();
+		GameWindow.getInstance().setRemainingTime(-1);
 	}
 
 	@Override

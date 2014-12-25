@@ -81,6 +81,10 @@ public class ScoreBoard extends JPanel {
 	}
 
 	public void setRemainingTime(int x) {
+		if (x < 0) {
+			timeLabel.setText("");
+			return;
+		}
 		timeLabel.setText(String.valueOf("Time Left: " + x));
 	}
 
