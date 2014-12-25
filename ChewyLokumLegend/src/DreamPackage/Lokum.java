@@ -54,7 +54,7 @@ abstract public class Lokum {
 		}
 	}
 
-	public static Color getRandomColor() {
+	private static Color getRandomColor() {
 		Random rand = new Random();
 		int a = rand.nextInt(4);
 		switch (a) {

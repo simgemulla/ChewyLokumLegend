@@ -23,6 +23,12 @@ abstract public class Level {
 	 *            Starting board for the level
 	 * @param scoreNeeded
 	 *            Minimum score needed to pass the level
+	 * @param levelID
+	 *            ID of the level
+	 * @param locked
+	 *            Has the scoreNeeded been achieved
+	 * @param specialSwapCount
+	 *            The number of special swaps allowed in this level
 	 */
 	public Level(int moveCount, int highScore, Lokum[][] initialBoard,
 			int scoreNeeded, int levelID, boolean locked, int specialSwapCount) {
@@ -63,18 +69,31 @@ abstract public class Level {
 		return initialBoard;
 	}
 
+	/**
+	 * @return ID of the level
+	 */
 	public int getLevelID() {
 		return levelID;
 	}
 
+	/**
+	 * @return Has the scoreNeeded been achieved
+	 */
 	public boolean getLocked() {
 		return locked;
 	}
 
+	/**
+	 * @param locked
+	 *            Has the scoreNeeded been achieved
+	 */
 	public void setLocked(boolean locked) {
 		this.locked = locked;
 	}
 
+	/**
+	 * @return The number of special swaps left in this level
+	 */
 	public int getSpecialSwapCount() {
 		return specialSwapCount;
 	}
@@ -83,8 +102,12 @@ abstract public class Level {
 		this.specialSwapCount = specialSwapCount;
 	}
 
+	/**
+	 * @param amount
+	 *            Decrease amount
+	 */
 	public void decreaseSpecialSwapCount(int amount) {
-		if (specialSwapCount - amount >= 0)
+		if (specialSwapCount - amount >= 0 && amount > 0)
 			specialSwapCount -= amount;
 		GameWindow.getInstance().setSpecialSwapLeft(specialSwapCount);
 	}

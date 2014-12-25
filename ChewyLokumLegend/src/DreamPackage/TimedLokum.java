@@ -3,7 +3,7 @@ package DreamPackage;
 import java.awt.Color;
 
 public class TimedLokum extends Lokum {
-	public static final int bonusTime = 5;
+	public static final int BONUS_TIME = 5;
 
 	public TimedLokum(Color c) {
 		super(c);
@@ -33,16 +33,15 @@ public class TimedLokum extends Lokum {
 	@Override
 	public int destroy(int x, int y) {
 		((TimedLevel) GameState.getInstance().getSelectedLevel())
-				.increaseRemainingTime(bonusTime);
+				.increaseRemainingTime(BONUS_TIME);
 		return 0;
 	}
 
+	/**
+	 * @return The time added to countdown when this lokum is deleted
+	 */
 	public int getBonusTime() {
-		return bonusTime;
-	}
-
-	public boolean isTimedLokum() {
-		return true;
+		return BONUS_TIME;
 	}
 
 }

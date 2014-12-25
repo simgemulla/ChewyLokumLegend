@@ -26,10 +26,17 @@ public class striped extends SpecialLokum {
 		setDeleteBonus(0);
 	}
 
+	/**
+	 * @return The orientation of the striped lokum
+	 */
 	public int getOrientation() {
 		return orientation;
 	}
 
+	/**
+	 * @param a
+	 *            The orientation of the striped lokum
+	 */
 	public void setOrientation(int a) {
 		if (a == HORIZONTAL || a == VERTICAL)
 			orientation = a;
@@ -90,6 +97,9 @@ public class striped extends SpecialLokum {
 
 	}
 
+	/**
+	 * @return striped.HORIZONTAL or striped.VERTICAL
+	 */
 	public static int getRandomOrientation() {
 		int a = (new Random()).nextInt(2);
 		if (a == 0)

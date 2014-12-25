@@ -15,15 +15,35 @@ public class TimedLevel extends Level {
 	private ActionListener actList = new ActionListener() {
 
 		public void actionPerformed(ActionEvent arg0) {
-			if (((TimedLevel) GameState.getInstance().getSelectedLevel()).getScoreNeeded() > (GameState.getInstance().getScore() )) {
-				
+			if (((TimedLevel) GameState.getInstance().getSelectedLevel())
+					.getScoreNeeded() > (GameState.getInstance().getScore())) {
 
 				decreaseRemainingTime(1);
 			}
-			
+
 		}
 	};
 
+	/**
+	 * Creates a TimedLevel.
+	 * 
+	 * @param moveCount
+	 *            Maximum number of moves allowed to pass the level
+	 * @param highScore
+	 *            Highest score achieved in this level
+	 * @param initialBoard
+	 *            Starting board for the level
+	 * @param scoreNeeded
+	 *            Minimum score needed to pass the level
+	 * @param levelID
+	 *            ID of the level
+	 * @param locked
+	 *            Has the scoreNeeded been achieved
+	 * @param specialSwapCount
+	 *            The number of special swaps allowed in this level
+	 * @param timeLimit
+	 *            The maximum time allowed to finish the level
+	 */
 	public TimedLevel(int moveCount, int highScore, Lokum[][] initialBoard,
 			int scoreNeeded, int levelID, boolean locked, int specialSwapCount,
 			int timeLimit) {

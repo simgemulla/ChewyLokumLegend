@@ -47,6 +47,7 @@ public abstract class SpecialLokum extends Lokum {
 		return deleteBonus;
 	}
 
+	@Override
 	public int destroy(int x, int y) {
 		this.specialEffect(x, y);
 		return this.getDeleteBonus();
