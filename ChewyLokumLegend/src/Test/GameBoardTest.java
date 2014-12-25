@@ -14,7 +14,7 @@ public class GameBoardTest {
 
 	// @BeforeClass
 	@Before
-	public static void setUp() {
+	public void setUp() {
 		// Initializes g1, fills g1
 		g1 = GameBoard.getInstance();
 		Lokum[][] asd = new Lokum[3][3];
@@ -33,7 +33,7 @@ public class GameBoardTest {
 	}
 
 	@Test
-	public static void CheckForNormalSwap() {
+	public  void CheckForNormalSwap() {
 		// Normal swap
 		g1.toString();
 
@@ -50,7 +50,7 @@ public class GameBoardTest {
 	}
 
 	@Test
-	public static void CheckForDistantSwap() {
+	public  void CheckForDistantSwap() {
 		// Distant swap
 		g1.toString();
 
@@ -66,7 +66,7 @@ public class GameBoardTest {
 	}
 
 	@Test
-	public static void CheckForNormalAndColorBombSwap() {
+	public  void CheckForNormalAndColorBombSwap() {
 		// Swapping normal and colorBomb
 		g1.toString();
 
@@ -84,7 +84,7 @@ public class GameBoardTest {
 	}
 
 	@Test
-	public static void CheckForNormalAndStripedSwap() {
+	public  void CheckForNormalAndStripedSwap() {
 		// Swapping normal and striped
 		g1.toString();
 
@@ -102,7 +102,7 @@ public class GameBoardTest {
 	}
 
 	@Test
-	public static void CheckForNormalAndWrappedSwap() {
+	public  void CheckForNormalAndWrappedSwap() {
 		// Swapping normal and wrapped
 		g1.toString();
 
@@ -120,7 +120,7 @@ public class GameBoardTest {
 	}
 
 	@Test
-	public static void CheckForDeleteAndFill() {
+	public  void CheckForDeleteAndFill() {
 		// Test deleteAndFill
 		g1.toString();
 
