@@ -315,7 +315,7 @@ public class Board extends JLabel {
 		for (int[] a : GameBoard.getInstance().getDeleteList()) {
 			int x = a[0];
 			int y = a[1];
-			
+
 			for (int k = 0; k < CELL_SIZE; k++) {
 				image.setRGB(CELL_SIZE * x + k, CELL_SIZE * y,
 						Color.green.getRGB());

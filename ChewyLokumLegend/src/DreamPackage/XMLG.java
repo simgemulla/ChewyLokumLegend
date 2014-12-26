@@ -84,7 +84,7 @@ public class XMLG {
 					scoreNeeded = Integer.parseInt(stateElement
 							.getElementsByTagName("goalscore").item(0)
 							.getTextContent());
-					
+
 					NodeList lokumlist = ((Element) stateElement
 							.getElementsByTagName("board").item(0))
 							.getElementsByTagName("lokum");
@@ -136,7 +136,7 @@ public class XMLG {
 						int y = Integer.parseInt(lokumElement
 								.getElementsByTagName("ycoord").item(0)
 								.getTextContent());
-						
+
 						String type = lokumElement.getElementsByTagName("type")
 								.item(0).getTextContent();
 						Color c = null;
@@ -166,7 +166,7 @@ public class XMLG {
 					for (int i = 0; i < obstacleList.getLength(); i++) {
 						Node obstacleNode = obstacleList.item(i);
 						Element obstacleElement = (Element) obstacleNode;
-						
+
 						int x = Integer.parseInt(obstacleElement
 								.getElementsByTagName("xcoord").item(0)
 								.getTextContent());
@@ -254,7 +254,7 @@ public class XMLG {
 			for (int i = 0; i < lokumList.length; i++) {
 				for (int j = 0; j < lokumList[i].length; j++) {
 					Lokum lokum = lokumList[i][j];
-					
+
 					if (lokum instanceof obstacle) {
 						Element obstacleElement = document
 								.createElement("obstacle");
@@ -441,7 +441,7 @@ public class XMLG {
 						NodeList lokumlist = ((Element) levelElement
 								.getElementsByTagName("initialboard").item(0))
 								.getElementsByTagName("lokum");
-						
+
 						NodeList obstacleList = ((Element) levelElement
 								.getElementsByTagName("initialboard").item(0))
 								.getElementsByTagName("obstacle");
@@ -487,11 +487,11 @@ public class XMLG {
 							if (type.equals("colorBomb"))
 								initialBoard[x][y] = new colorBomb();
 						}
-						
+
 						for (int i = 0; i < obstacleList.getLength(); i++) {
 							Node obstacleNode = obstacleList.item(i);
 							Element obstacleElement = (Element) obstacleNode;
-							
+
 							int x = Integer.parseInt(((Element) obstacleElement
 									.getElementsByTagName("position").item(0))
 									.getElementsByTagName("xcoord").item(0)

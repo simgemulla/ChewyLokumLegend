@@ -29,12 +29,13 @@ public class GameBoardTest {
 		asd[2][1] = new NormalLokum(Lokum.RED);
 		asd[2][2] = new NormalLokum(Lokum.RED);
 
-		Level level1 = new NormalLevel(45, 0, asd, 1000, 0, false, 3);
+		Level level1 = new NormalLevel(45, 0, asd, 10000000, 0, false, 3);
 		GameBoard.getInstance().setBoard(level1);
 		GameState.getInstance().setState(level1);
 		SelectLevelWindow.getInstance().setVisible(false);
 		GameWindow gw = GameWindow.getInstance();
 		gw.paintBoard();
+		g1.getDeleteList().clear();
 	}
 
 	@Test
@@ -145,7 +146,7 @@ public class GameBoardTest {
 		asd[2][1] = new NormalLokum(Lokum.RED);
 		asd[2][2] = new NormalLokum(Lokum.GREEN);
 
-		Level level1 = new NormalLevel(45, 0, asd, 1000, 0, false, 3);
+		Level level1 = new NormalLevel(45, 0, asd, 10000000, 0, false, 3);
 		GameBoard.getInstance().setBoard(level1);
 		GameState.getInstance().setState(level1);
 		SelectLevelWindow.getInstance().setVisible(false);
@@ -180,7 +181,7 @@ public class GameBoardTest {
 		asd[2][1] = new NormalLokum(Lokum.BROWN);
 		asd[2][2] = new NormalLokum(Lokum.YELLOW);
 
-		Level level1 = new NormalLevel(45, 0, asd, 1000, 0, false, 3);
+		Level level1 = new NormalLevel(45, 0, asd, 10000000, 0, false, 3);
 		GameBoard.getInstance().setBoard(level1);
 		GameState.getInstance().setState(level1);
 		SelectLevelWindow.getInstance().setVisible(false);
@@ -215,7 +216,7 @@ public class GameBoardTest {
 		asd[2][1] = new NormalLokum(Lokum.YELLOW);
 		asd[2][2] = new NormalLokum(Lokum.GREEN);
 
-		Level level1 = new NormalLevel(45, 0, asd, 1000, 0, false, 3);
+		Level level1 = new NormalLevel(45, 0, asd, 10000000, 0, false, 3);
 		GameBoard.getInstance().setBoard(level1);
 		GameState.getInstance().setState(level1);
 		SelectLevelWindow.getInstance().setVisible(false);
@@ -248,7 +249,7 @@ public class GameBoardTest {
 		asd[2][1] = new NormalLokum(Lokum.BROWN);
 		asd[2][2] = new NormalLokum(Lokum.YELLOW);
 
-		Level level1 = new NormalLevel(45, 0, asd, 10000, 0, false, 3);
+		Level level1 = new NormalLevel(45, 0, asd, 10000000, 0, false, 3);
 		GameBoard.getInstance().setBoard(level1);
 		GameState.getInstance().setState(level1);
 		SelectLevelWindow.getInstance().setVisible(false);
@@ -282,7 +283,7 @@ public class GameBoardTest {
 		asd[2][1] = new NormalLokum(Lokum.BROWN);
 		asd[2][2] = new NormalLokum(Lokum.RED);
 
-		Level level1 = new NormalLevel(45, 0, asd, 1000, 0, false, 3);
+		Level level1 = new NormalLevel(45, 0, asd, 10000000, 0, false, 3);
 		GameBoard.getInstance().setBoard(level1);
 		GameState.getInstance().setState(level1);
 		SelectLevelWindow.getInstance().setVisible(false);
@@ -315,7 +316,7 @@ public class GameBoardTest {
 		asd[2][1] = new NormalLokum(Lokum.RED);
 		asd[2][2] = new NormalLokum(Lokum.GREEN);
 
-		Level level1 = new NormalLevel(45, 0, asd, 10000, 0, false, 3);
+		Level level1 = new NormalLevel(45, 0, asd, 10000000, 0, false, 3);
 		GameBoard.getInstance().setBoard(level1);
 		GameState.getInstance().setState(level1);
 		SelectLevelWindow.getInstance().setVisible(false);
@@ -348,7 +349,7 @@ public class GameBoardTest {
 		asd[2][1] = new NormalLokum(Lokum.RED);
 		asd[2][2] = new NormalLokum(Lokum.GREEN);
 
-		Level level1 = new NormalLevel(45, 0, asd, 10000, 0, false, 3);
+		Level level1 = new NormalLevel(45, 0, asd, 10000000, 0, false, 3);
 		GameBoard.getInstance().setBoard(level1);
 		GameState.getInstance().setState(level1);
 		SelectLevelWindow.getInstance().setVisible(false);
@@ -382,7 +383,7 @@ public class GameBoardTest {
 		asd[2][1] = new NormalLokum(Lokum.RED);
 		asd[2][2] = new NormalLokum(Lokum.GREEN);
 
-		Level level1 = new NormalLevel(45, 0, asd, 1000, 0, false, 0);
+		Level level1 = new NormalLevel(45, 0, asd, 10000000, 0, false, 0);
 		GameBoard.getInstance().setBoard(level1);
 		GameState.getInstance().setState(level1);
 		SelectLevelWindow.getInstance().setVisible(false);
@@ -422,7 +423,7 @@ public class GameBoardTest {
 		asd[2][1] = new NormalLokum(Lokum.RED);
 		asd[2][2] = new NormalLokum(Lokum.GREEN);
 
-		Level level1 = new NormalLevel(45, 0, asd, 1000, 0, false, 1);
+		Level level1 = new NormalLevel(45, 0, asd, 10000000, 0, false, 1);
 		GameBoard.getInstance().setBoard(level1);
 		GameState.getInstance().setState(level1);
 		SelectLevelWindow.getInstance().setVisible(false);
@@ -458,7 +459,7 @@ public class GameBoardTest {
 		asd[2][1] = new NormalLokum(Lokum.GREEN);
 		asd[2][2] = new NormalLokum(Lokum.BROWN);
 
-		Level level1 = new NormalLevel(45, 0, asd, 1000, 0, false, 1);
+		Level level1 = new NormalLevel(45, 0, asd, 10000000, 0, false, 1);
 		GameBoard.getInstance().setBoard(level1);
 		GameState.getInstance().setState(level1);
 		SelectLevelWindow.getInstance().setVisible(false);
@@ -496,7 +497,7 @@ public class GameBoardTest {
 		asd[2][1] = new NormalLokum(Lokum.BROWN);
 		asd[2][2] = new NormalLokum(Lokum.GREEN);
 
-		Level level1 = new NormalLevel(45, 0, asd, 1000, 0, false, 0);
+		Level level1 = new NormalLevel(45, 0, asd, 10000000, 0, false, 0);
 		GameBoard.getInstance().setBoard(level1);
 		GameState.getInstance().setState(level1);
 		SelectLevelWindow.getInstance().setVisible(false);
@@ -530,7 +531,7 @@ public class GameBoardTest {
 		asd[2][1] = new NormalLokum(Lokum.BROWN);
 		asd[2][2] = new NormalLokum(Lokum.GREEN);
 
-		Level level1 = new TimedLevel(45, 0, asd, 10000, 0, false, 0, 15);
+		Level level1 = new TimedLevel(45, 0, asd, 100000000, 0, false, 0, 15);
 		GameBoard.getInstance().setBoard(level1);
 		GameState.getInstance().setState(level1);
 		SelectLevelWindow.getInstance().setVisible(false);
@@ -567,7 +568,7 @@ public class GameBoardTest {
 		asd[2][1] = new NormalLokum(Lokum.RED);
 		asd[2][2] = new NormalLokum(Lokum.GREEN);
 
-		Level level1 = new NormalLevel(45, 0, asd, 1000, 0, false, 3);
+		Level level1 = new NormalLevel(45, 0, asd, 10000000, 0, false, 3);
 		GameBoard.getInstance().setBoard(level1);
 		GameState.getInstance().setState(level1);
 		SelectLevelWindow.getInstance().setVisible(false);

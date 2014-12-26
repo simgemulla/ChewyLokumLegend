@@ -493,14 +493,6 @@ public class GameBoard {
 				newList[i][0] = Lokum.getRandomLokum();
 		}
 
-		// Filling empty spaces
-		// GEREK KALMAMIs OLMASI LAZIM
-		/*
-		 * for (int j = 0; j < newList[0].length; j++) { for (int i = 0; i <
-		 * newList.length; i++) { if (newList[i][j] == null) { newList[i][j] =
-		 * Lokum.getRandomLokum(); } } }
-		 */
-
 		lokumList = newList;
 		GameWindow.getInstance().paintBoard();
 
@@ -531,6 +523,7 @@ public class GameBoard {
 		}
 		GameState.getInstance().score += scoreEarned;
 		GameWindow.getInstance().setScore(GameState.getInstance().score);
+		GameWindow.getInstance().paintBoard();
 	}
 
 	public Lokum[][] getLokumList() {
