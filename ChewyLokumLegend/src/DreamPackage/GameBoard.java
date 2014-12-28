@@ -42,6 +42,8 @@ public class GameBoard {
 	 * @ensures GameBoard.getInstance().lokumList = l.getInitialBoard() <br>
 	 *          this.repOK() == true
 	 * @modifies GameBoard.getInstance().lokumList
+	 * @param l
+	 *            The selected level
 	 */
 	public void setBoard(Level l) {
 		lokumList = l.copyBoard();
@@ -53,8 +55,8 @@ public class GameBoard {
 	 * @requires this.repOK() == true <br>
 	 *           0 <= x1 < lokumList.length <br>
 	 *           0 <= x2 < lokumList.length <br>
-	 *           0 <= y1 < lokumList[0].length <br>
-	 *           0 <= y2 < lokumList[0].length <br>
+	 *           0 <= y1 < lokumList[x1].length <br>
+	 *           0 <= y2 < lokumList[x2].length <br>
 	 *           (x1 == x2 && y1 == y2) != true
 	 * @ensures this.repOK() == true
 	 * @modifies lokumList[x1][y1] <br>
@@ -112,12 +114,12 @@ public class GameBoard {
 			//
 
 			// ------ 1
-			if (lokum1 instanceof striped && lokum2 instanceof striped) {
-				striped l1 = (striped) lokum1;
-				striped l2 = (striped) lokum2;
+			if (lokum1 instanceof Striped && lokum2 instanceof Striped) {
+				Striped l1 = (Striped) lokum1;
+				Striped l2 = (Striped) lokum2;
 				if (l1.getOrientation() == l2.getOrientation()) {
-					l1.setOrientation(striped.HORIZONTAL);
-					l2.setOrientation(striped.VERTICAL);
+					l1.setOrientation(Striped.HORIZONTAL);
+					l2.setOrientation(Striped.VERTICAL);
 				}
 				lokumList[x1][y1] = l1;
 				lokumList[x2][y2] = l2;
@@ -125,7 +127,7 @@ public class GameBoard {
 				deleteList.add(new int[] { x2, y2 });
 			}
 			// ------ 2
-			if (lokum1 instanceof striped && lokum2 instanceof wrapped) {
+			if (lokum1 instanceof Striped && lokum2 instanceof Wrapped) {
 				// System deletes 3 horizontal and 3 vertical lines including
 				// swapped special lokums rows and columns. Merkezi wrapped'in
 				// swap sonrasi yeri alalim
@@ -145,7 +147,7 @@ public class GameBoard {
 					}
 				}
 			}
-			if (lokum1 instanceof wrapped && lokum2 instanceof striped) {
+			if (lokum1 instanceof Wrapped && lokum2 instanceof Striped) {
 				for (int i = x1 - 1; i <= x1 + 1; i++) {
 					if (i < 0 || i >= lokumList.length)
 						continue;
@@ -163,7 +165,7 @@ public class GameBoard {
 				}
 			}
 			// ------ 3
-			if (lokum1 instanceof striped && lokum2 instanceof colorBomb) {
+			if (lokum1 instanceof Striped && lokum2 instanceof ColorBomb) {
 				// System changes all lokums with the same color of the striped
 				// lokum to striped lokums (random orientation) and deletes them
 				// (DONT FORGET THE SPEC. EFFECT!).
@@ -171,8 +173,8 @@ public class GameBoard {
 					for (int j = 0; j < lokumList[i].length; j++) {
 						if (lokumList[i][j].getColor()
 								.equals(lokum1.getColor())) {
-							lokumList[i][j] = new striped(lokum1.getColor(),
-									striped.getRandomOrientation());
+							lokumList[i][j] = new Striped(lokum1.getColor(),
+									Striped.getRandomOrientation());
 							deleteList.add(new int[] { i, j });
 						}
 					}
@@ -180,13 +182,13 @@ public class GameBoard {
 				deleteList.add(new int[] { x2, y2 });
 			}
 
-			if (lokum1 instanceof colorBomb && lokum2 instanceof striped) {
+			if (lokum1 instanceof ColorBomb && lokum2 instanceof Striped) {
 				for (int i = 0; i < lokumList.length; i++) {
 					for (int j = 0; j < lokumList[i].length; j++) {
 						if (lokumList[i][j].getColor()
 								.equals(lokum2.getColor())) {
-							lokumList[i][j] = new striped(lokum2.getColor(),
-									striped.getRandomOrientation());
+							lokumList[i][j] = new Striped(lokum2.getColor(),
+									Striped.getRandomOrientation());
 							deleteList.add(new int[] { i, j });
 						}
 					}
@@ -194,14 +196,14 @@ public class GameBoard {
 				deleteList.add(new int[] { x1, y1 });
 			}
 			// ------ 4
-			if (lokum1 instanceof wrapped && lokum2 instanceof wrapped) {
+			if (lokum1 instanceof Wrapped && lokum2 instanceof Wrapped) {
 				// System increases the score by 3600 points.
 				scoreEarned += 3600;
 				deleteList.add(new int[] { x1, y1 });
 				deleteList.add(new int[] { x2, y2 });
 			}
 			// ------ 5
-			if (lokum1 instanceof wrapped && lokum2 instanceof colorBomb) {
+			if (lokum1 instanceof Wrapped && lokum2 instanceof ColorBomb) {
 				// System deletes all lokums with the same color as the wrapped
 				// lokum and another random color.
 				Color c = Lokum.getRandomLokum().getColor();
@@ -223,7 +225,7 @@ public class GameBoard {
 				deleteList.add(new int[] { x2, y2 });
 			}
 
-			if (lokum1 instanceof colorBomb && lokum2 instanceof wrapped) {
+			if (lokum1 instanceof ColorBomb && lokum2 instanceof Wrapped) {
 				Color c = Lokum.getRandomLokum().getColor();
 				while (c.equals(lokum1.getColor())) {
 					c = Lokum.getRandomLokum().getColor();
@@ -243,7 +245,7 @@ public class GameBoard {
 				deleteList.add(new int[] { x1, y1 });
 			}
 			// ------ 6
-			if (lokum1 instanceof colorBomb && lokum2 instanceof colorBomb) {
+			if (lokum1 instanceof ColorBomb && lokum2 instanceof ColorBomb) {
 				// System increases the score by n^2 x 100 points where ??n is
 				// the number of lokums on the entire board. Deletes all lokums
 				// on board!
@@ -264,23 +266,23 @@ public class GameBoard {
 			// 4. normal + normal
 
 			// ------ 1
-			if (lokum1 instanceof striped) {
+			if (lokum1 instanceof Striped) {
 				// No idea what to do!
 			}
-			if (lokum2 instanceof striped) {
+			if (lokum2 instanceof Striped) {
 				// No idea what to do!
 			}
 
 			// ------ 2
-			if (lokum1 instanceof wrapped) {
+			if (lokum1 instanceof Wrapped) {
 				// No idea what to do!
 			}
-			if (lokum2 instanceof wrapped) {
+			if (lokum2 instanceof Wrapped) {
 				// No idea what to do!
 			}
 
 			// ------ 3
-			if (lokum1 instanceof colorBomb) {
+			if (lokum1 instanceof ColorBomb) {
 				// 1. All lokums with the same color as the colored swapped
 				// lokum are deleted and score is increased by n^2 x 60 points,
 				// where is the number of lokums which are deleted.
@@ -297,7 +299,7 @@ public class GameBoard {
 				deleteList.add(new int[] { x1, y1 });
 				scoreEarned += count * count * 60;
 			}
-			if (lokum2 instanceof colorBomb) {
+			if (lokum2 instanceof ColorBomb) {
 				// 1. All lokums with the same color as the colored swapped
 				// lokum are deleted and score is increased by n^2 x 60 points,
 				// where is the number of lokums which are deleted.
@@ -328,8 +330,8 @@ public class GameBoard {
 		System.out.println("--- New Swap ---");
 		int count = checkGroups();
 
-		if (lokumList[x1][y1] instanceof obstacle
-				|| lokumList[x2][y2] instanceof obstacle) {
+		if (lokumList[x1][y1] instanceof Obstacle
+				|| lokumList[x2][y2] instanceof Obstacle) {
 
 			if (GameState.getInstance().getSelectedLevel()
 					.getSpecialSwapCount() > 0) {
@@ -381,7 +383,7 @@ public class GameBoard {
 		GameState.getInstance().decMoves();
 	}
 
-	public int checkGroups() {
+	private int checkGroups() {
 		int quins = checkQuins();
 		int quads = checkQuads();
 		int triples = checkTriples();
@@ -392,7 +394,7 @@ public class GameBoard {
 
 	/**
 	 * Deletes groups of 3 or more Lokums, and fills the places of deleted
-	 * Lokums.
+	 * Lokums. Also creates the SpecialLokums
 	 * 
 	 * @requires this.repOK() == true <br>
 	 *           deleteList!=null<br>
@@ -428,7 +430,7 @@ public class GameBoard {
 			int x = a[0];
 			int y = a[1];
 			Lokum l = newList[x][y];
-			if (l == null || l instanceof obstacle) {
+			if (l == null || l instanceof Obstacle) {
 				deleteList.remove(i);
 				continue;
 			}
@@ -461,7 +463,7 @@ public class GameBoard {
 				if (newList[i][j] == null) {
 					for (int x = j - 1; x >= 0; x--) {
 						if (newList[i][x] != null) {
-							if (newList[i][x] instanceof obstacle) {
+							if (newList[i][x] instanceof Obstacle) {
 								if (x == 0) {
 									if (newList[i][x + 1] == null)
 										newList[i][x + 1] = Lokum
@@ -502,14 +504,23 @@ public class GameBoard {
 		return newScore;
 	}
 
+	/**
+	 * Creates and deletes n x individual Striped lokums where “n” is the number
+	 * of extra moves
+	 * 
+	 * @requires The player successfully finished the level.
+	 * @modifies lokumlist<br>
+	 *           GameState.score
+	 * @ensures repOK()==true
+	 */
 	public void wonTheGame() {
 		int movesLeft = GameState.getInstance().getRemainingMoves();
 		Random rand = new Random();
 		for (int i = 0; i < movesLeft; i++) {
 			int x = rand.nextInt(lokumList.length);
 			int y = rand.nextInt(lokumList[x].length);
-			lokumList[x][y] = new striped(lokumList[x][y].getColor(),
-					striped.getRandomOrientation());
+			lokumList[x][y] = new Striped(lokumList[x][y].getColor(),
+					Striped.getRandomOrientation());
 			deleteList.add(new int[] { x, y });
 		}
 		int scoreEarned = 0;
@@ -526,10 +537,16 @@ public class GameBoard {
 		GameWindow.getInstance().paintBoard();
 	}
 
+	/**
+	 * @return GameBoard.lokumList
+	 */
 	public Lokum[][] getLokumList() {
 		return lokumList;
 	}
 
+	/**
+	 * @return GameBoard.deleteList
+	 */
 	public ArrayList<int[]> getDeleteList() {
 		return deleteList;
 	}
@@ -540,7 +557,7 @@ public class GameBoard {
 	 * 
 	 * @return Number of triples found.
 	 */
-	public int checkTriples() {
+	private int checkTriples() {
 		int count = createList.size();
 		int yMax = lokumList[0].length;
 		int xMax = lokumList.length;
@@ -637,7 +654,7 @@ public class GameBoard {
 	 * 
 	 * @return Number of quadruples found.
 	 */
-	public int checkQuads() {
+	private int checkQuads() {
 		int count = createList.size();
 		int yMax = lokumList[0].length;
 		int xMax = lokumList.length;
@@ -659,7 +676,7 @@ public class GameBoard {
 					deleteList.add(new int[] { k + 2, l });
 					deleteList.add(new int[] { k + 3, l });
 					createList.add(new Object[] { k + 1, l,
-							new striped(c, striped.HORIZONTAL) }); // SIKINTILI
+							new Striped(c, Striped.HORIZONTAL) }); // SIKINTILI
 				}
 				if (l < yMax - 3
 						&& c.equals(lokumList[k][l + 1].getColor())
@@ -673,7 +690,7 @@ public class GameBoard {
 					deleteList.add(new int[] { k, l + 2 });
 					deleteList.add(new int[] { k, l + 3 });
 					createList.add(new Object[] { k, l + 1,
-							new striped(c, striped.VERTICAL) }); // SIKINTILI
+							new Striped(c, Striped.VERTICAL) }); // SIKINTILI
 				}
 			}
 		}
@@ -686,7 +703,7 @@ public class GameBoard {
 	 * 
 	 * @return Number of quintuples found.
 	 */
-	public int checkQuins() {
+	private int checkQuins() {
 		int count = createList.size();
 		int yMax = lokumList[0].length;
 		int xMax = lokumList.length;
@@ -706,7 +723,7 @@ public class GameBoard {
 					deleteList.add(new int[] { k, l });
 					deleteList.add(new int[] { k, l + 1 });
 					deleteList.add(new int[] { k, l - 1 });
-					createList.add(new Object[] { k, l, new wrapped(c) });
+					createList.add(new Object[] { k, l, new Wrapped(c) });
 				}
 				// Check for T
 				if (k > 0 && k < xMax - 1 && l > 0 && l < yMax - 1
@@ -719,7 +736,7 @@ public class GameBoard {
 					deleteList.add(new int[] { k, l });
 					deleteList.add(new int[] { k - 1, l - 1 });
 					deleteList.add(new int[] { k + 1, l - 1 });
-					createList.add(new Object[] { k, l - 1, new wrapped(c) });
+					createList.add(new Object[] { k, l - 1, new Wrapped(c) });
 				}
 				// Check for T_CW
 				if (k > 0 && k < xMax - 1 && l > 0 && l < yMax - 1
@@ -732,7 +749,7 @@ public class GameBoard {
 					deleteList.add(new int[] { k, l });
 					deleteList.add(new int[] { k + 1, l - 1 });
 					deleteList.add(new int[] { k + 1, l + 1 });
-					createList.add(new Object[] { k + 1, l, new wrapped(c) });
+					createList.add(new Object[] { k + 1, l, new Wrapped(c) });
 				}
 				// Check for T_CW2
 				if (k > 0 && k < xMax - 1 && l > 0 && l < yMax - 1
@@ -745,7 +762,7 @@ public class GameBoard {
 					deleteList.add(new int[] { k, l });
 					deleteList.add(new int[] { k - 1, l + 1 });
 					deleteList.add(new int[] { k + 1, l + 1 });
-					createList.add(new Object[] { k, l + 1, new wrapped(c) });
+					createList.add(new Object[] { k, l + 1, new Wrapped(c) });
 				}
 				// Check for T_CW3
 				if (k > 0 && k < xMax - 1 && l > 0 && l < yMax - 1
@@ -758,7 +775,7 @@ public class GameBoard {
 					deleteList.add(new int[] { k, l });
 					deleteList.add(new int[] { k - 1, l - 1 });
 					deleteList.add(new int[] { k - 1, l + 1 });
-					createList.add(new Object[] { k - 1, l, new wrapped(c) });
+					createList.add(new Object[] { k - 1, l, new Wrapped(c) });
 				}
 				// Check for Horizontal
 				if (k < xMax - 4 && c.equals(lokumList[k + 1][l].getColor())
@@ -770,7 +787,7 @@ public class GameBoard {
 					deleteList.add(new int[] { k + 2, l });
 					deleteList.add(new int[] { k + 3, l });
 					deleteList.add(new int[] { k + 4, l });
-					createList.add(new Object[] { k + 2, l, new colorBomb() });
+					createList.add(new Object[] { k + 2, l, new ColorBomb() });
 				}
 				// Check for Vertical
 				if (l < yMax - 4 && c.equals(lokumList[k][l + 1].getColor())
@@ -782,13 +799,16 @@ public class GameBoard {
 					deleteList.add(new int[] { k, l + 2 });
 					deleteList.add(new int[] { k, l + 3 });
 					deleteList.add(new int[] { k, l + 4 });
-					createList.add(new Object[] { k, l + 2, new colorBomb() });
+					createList.add(new Object[] { k, l + 2, new ColorBomb() });
 				}
 			}
 		}
 		return createList.size() - count;
 	}
 
+	/**
+	 * @return A deep-clone of GameBoard.lokumList
+	 */
 	public Lokum[][] copyLokumList() {
 		Lokum[][] newList = new Lokum[lokumList.length][];
 		for (int i = 0; i < lokumList.length; i++) {
@@ -827,6 +847,8 @@ public class GameBoard {
 		}
 
 		// ALSO HAS TO VERIFY THAT THERE ARE NO GROUPS OF THREE OR MORE
+		if (checkGroups() > 0)
+			return false;
 
 		return true;
 	}

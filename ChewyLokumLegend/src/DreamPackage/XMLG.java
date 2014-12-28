@@ -5,9 +5,9 @@ import java.io.File;
 
 import DreamPackage.Level;
 import DreamPackage.Lokum;
-import DreamPackage.striped;
-import DreamPackage.wrapped;
-import DreamPackage.colorBomb;
+import DreamPackage.Striped;
+import DreamPackage.Wrapped;
+import DreamPackage.ColorBomb;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
@@ -154,13 +154,13 @@ public class XMLG {
 						if (type.equals("tLokum"))
 							board[x][y] = new TimedLokum(c);
 						if (type.equals("vStriped"))
-							board[x][y] = new striped(c, striped.VERTICAL);
+							board[x][y] = new Striped(c, Striped.VERTICAL);
 						if (type.equals("hStriped"))
-							board[x][y] = new striped(c, striped.HORIZONTAL);
+							board[x][y] = new Striped(c, Striped.HORIZONTAL);
 						if (type.equals("wrapped"))
-							board[x][y] = new wrapped(c);
+							board[x][y] = new Wrapped(c);
 						if (type.equals("colorBomb"))
-							board[x][y] = new colorBomb();
+							board[x][y] = new ColorBomb();
 					}
 
 					for (int i = 0; i < obstacleList.getLength(); i++) {
@@ -173,7 +173,7 @@ public class XMLG {
 						int y = Integer.parseInt(obstacleElement
 								.getElementsByTagName("ycoord").item(0)
 								.getTextContent());
-						board[x][y] = new obstacle();
+						board[x][y] = new Obstacle();
 					}
 
 				}
@@ -255,7 +255,7 @@ public class XMLG {
 				for (int j = 0; j < lokumList[i].length; j++) {
 					Lokum lokum = lokumList[i][j];
 
-					if (lokum instanceof obstacle) {
+					if (lokum instanceof Obstacle) {
 						Element obstacleElement = document
 								.createElement("obstacle");
 						obstacles.appendChild(obstacleElement);
@@ -311,15 +311,15 @@ public class XMLG {
 						lokumElement.appendChild(positionElement);
 
 						Text typeText = document.createTextNode("Lokum");
-						if (lokum instanceof colorBomb)
+						if (lokum instanceof ColorBomb)
 							typeText = document.createTextNode("colorBomb");
-						if (lokum instanceof striped
-								&& ((striped) lokum).getOrientation() == striped.HORIZONTAL)
+						if (lokum instanceof Striped
+								&& ((Striped) lokum).getOrientation() == Striped.HORIZONTAL)
 							typeText = document.createTextNode("hStriped");
-						if (lokum instanceof striped
-								&& ((striped) lokum).getOrientation() == striped.VERTICAL)
+						if (lokum instanceof Striped
+								&& ((Striped) lokum).getOrientation() == Striped.VERTICAL)
 							typeText = document.createTextNode("vStriped");
-						if (lokum instanceof wrapped)
+						if (lokum instanceof Wrapped)
 							typeText = document.createTextNode("wrapped");
 						if (lokum instanceof TimedLokum)
 							typeText = document.createTextNode("tLokum");
@@ -477,15 +477,15 @@ public class XMLG {
 							if (type.equals("tLokum"))
 								initialBoard[x][y] = new TimedLokum(c);
 							if (type.equals("vStriped"))
-								initialBoard[x][y] = new striped(c,
-										striped.VERTICAL);
+								initialBoard[x][y] = new Striped(c,
+										Striped.VERTICAL);
 							if (type.equals("hStriped"))
-								initialBoard[x][y] = new striped(c,
-										striped.HORIZONTAL);
+								initialBoard[x][y] = new Striped(c,
+										Striped.HORIZONTAL);
 							if (type.equals("wrapped"))
-								initialBoard[x][y] = new wrapped(c);
+								initialBoard[x][y] = new Wrapped(c);
 							if (type.equals("colorBomb"))
-								initialBoard[x][y] = new colorBomb();
+								initialBoard[x][y] = new ColorBomb();
 						}
 
 						for (int i = 0; i < obstacleList.getLength(); i++) {
@@ -500,7 +500,7 @@ public class XMLG {
 									.getElementsByTagName("position").item(0))
 									.getElementsByTagName("ycoord").item(0)
 									.getTextContent());
-							initialBoard[x][y] = new obstacle();
+							initialBoard[x][y] = new Obstacle();
 						}
 
 					}

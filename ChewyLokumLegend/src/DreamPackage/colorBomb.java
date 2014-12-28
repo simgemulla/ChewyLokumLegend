@@ -2,20 +2,20 @@ package DreamPackage;
 
 import java.awt.Color;
 
-public class colorBomb extends SpecialLokum {
+public class ColorBomb extends SpecialLokum {
 	public static final Color colorBombColor = Color.DARK_GRAY;
 
 	/**
 	 * Creates a colorBomb.
 	 */
-	public colorBomb() {
+	public ColorBomb() {
 		super(colorBombColor);
 		setCreateBonus(200);
 		setDeleteBonus(0);
 	}
 
-	public colorBomb createCopy() {
-		return new colorBomb();
+	public ColorBomb createCopy() {
+		return new ColorBomb();
 	}
 
 	public String toString() {
@@ -24,10 +24,4 @@ public class colorBomb extends SpecialLokum {
 
 	public void specialEffect(int x, int y) {
 	}
-
-	public Color colorBombColor() {
-		// TODO Auto-generated method stub
-		return colorBombColor;
-	}
-
 }

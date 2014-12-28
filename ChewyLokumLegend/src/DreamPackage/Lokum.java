@@ -92,6 +92,12 @@ abstract public class Lokum {
 
 	/**
 	 * Called before a Lokum gets deleted.
+	 * 
+	 * @param x
+	 *            The x-coordinate of the Lokum
+	 * @param y
+	 *            The y-coordinate of the Lokum
+	 * @return Score earned by deleting the Lokum
 	 */
 	abstract public int destroy(int x, int y);
 

@@ -3,7 +3,7 @@ package DreamPackage;
 import GUI.GameWindow;
 import GUI.MainMenu;
 import GUI.SelectLevelWindow;
-import GUI.endGame;
+import GUI.EndGame;
 
 /**
  * LokumGame is one of the main classes. It has the main methods such as start,
@@ -39,8 +39,8 @@ public class LokumGame {
 	 *          levelList.get(i).locked = false or levelList.get(i).locked =
 	 *          true
 	 * @modifies levelList
+	 * @return A list of levels
 	 */
-
 	public Level[] getLevels() {
 		if (levelList != null)
 			return levelList;
@@ -61,7 +61,7 @@ public class LokumGame {
 	}
 
 	public void showMainMenu() {
-		endGame.getInstance().setVisible(false);
+		EndGame.getInstance().setVisible(false);
 		GameWindow.getInstance().setVisible(false);
 		SelectLevelWindow.getInstance().setVisible(false);
 		MainMenu menu = MainMenu.getInstance();
@@ -73,7 +73,8 @@ public class LokumGame {
 	/**
 	 * It is for selecting the level.
 	 * 
-	 * @param l
+	 * @param k
+	 *            The ID of the selected level.
 	 */
 	public void selectLevel(int k) {
 		Level l = null;
@@ -137,7 +138,7 @@ public class LokumGame {
 		} else {
 
 		}
-		endGame eg = endGame.getInstance();
+		EndGame eg = EndGame.getInstance();
 		GameWindow.getInstance().setEnabled(false);
 		eg.setResult(didWin);
 		eg.pack();

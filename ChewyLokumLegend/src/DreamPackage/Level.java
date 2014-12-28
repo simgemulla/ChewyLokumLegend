@@ -135,6 +135,9 @@ abstract public class Level {
 		return true;
 	}
 
+	/**
+	 * @return A deep-clone of Level.initialBoard
+	 */
 	public Lokum[][] copyBoard() {
 		Lokum[][] board = new Lokum[initialBoard.length][];
 		for (int i = 0; i < initialBoard.length; i++) {
@@ -146,8 +149,14 @@ abstract public class Level {
 		return board;
 	}
 
+	/**
+	 * Called when a level is selected
+	 */
 	abstract public void startLevel();
 
+	/**
+	 * Called when a level ends
+	 */
 	abstract public void quitLevel();
 
 	/**

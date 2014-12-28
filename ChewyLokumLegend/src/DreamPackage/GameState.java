@@ -32,6 +32,9 @@ public class GameState {
 
 	/**
 	 * Sets the state according to the Level l.
+	 * 
+	 * @param l
+	 *            The selected level
 	 */
 	public void setState(Level l) {
 		if (selectedLevel != null)
@@ -52,6 +55,8 @@ public class GameState {
 	 * 
 	 * @param newScore
 	 *            Score to be added to the total score
+	 * @requires newScore > 0
+	 * @modifies GameState.score
 	 */
 	public void updateScore(int newScore) {
 		score += newScore;
@@ -63,6 +68,10 @@ public class GameState {
 
 	/**
 	 * Decrements the number of moves left.
+	 * 
+	 * @requires GameState.remainingMoves >= 0
+	 * @modifies GameState.remainingMoves
+	 * @ensures GameState.remainingMoves >= 0
 	 */
 	public void decMoves() {
 		if (remainingMoves > 1) {
@@ -78,19 +87,27 @@ public class GameState {
 	/**
 	 * Saves the current state of the game.
 	 */
-
 	public void saveState() {
 		XMLG.SaveState();
 	}
 
+	/**
+	 * @return Currently selected level
+	 */
 	public Level getSelectedLevel() {
 		return selectedLevel;
 	}
 
+	/**
+	 * @return Current total score
+	 */
 	public int getScore() {
 		return score;
 	}
 
+	/**
+	 * @return Currently remaining moves
+	 */
 	public int getRemainingMoves() {
 		return remainingMoves;
 	}

@@ -17,10 +17,10 @@ import DreamPackage.GameBoard;
 import DreamPackage.Lokum;
 import DreamPackage.LokumGame;
 import DreamPackage.TimedLokum;
-import DreamPackage.colorBomb;
-import DreamPackage.obstacle;
-import DreamPackage.striped;
-import DreamPackage.wrapped;
+import DreamPackage.ColorBomb;
+import DreamPackage.Obstacle;
+import DreamPackage.Striped;
+import DreamPackage.Wrapped;
 
 @SuppressWarnings("serial")
 /**
@@ -130,10 +130,13 @@ public class Board extends JLabel {
 		}
 	}
 
+	/**
+	 * Paints the lokums and the board.
+	 */
 	public void paintLokums() {
 		Lokum[][] list = GameBoard.getInstance().getLokumList();
 		image = new BufferedImage(CELL_SIZE * list.length + 1, CELL_SIZE
-				* list[0].length + 1, BufferedImage.TYPE_INT_RGB); // D�KKAT
+				* list[0].length + 1, BufferedImage.TYPE_INT_RGB);
 
 		for (int i = 0; i < list.length; i++) {
 			for (int j = 0; j < list[0].length; j++) {
@@ -160,23 +163,23 @@ public class Board extends JLabel {
 		// repaint();
 	}
 
-	public void paintLokum(int i, int j, Lokum lok, BufferedImage image) {
-		if (lok instanceof striped) {
+	private void paintLokum(int i, int j, Lokum lok, BufferedImage image) {
+		if (lok instanceof Striped) {
 			paintStriped(CELL_SIZE * i + (CELL_SIZE - LOKUM_SIZE) / 2,
 					CELL_SIZE * j + (CELL_SIZE - LOKUM_SIZE) / 2,
-					(striped) lok, image);
-		} else if (lok instanceof wrapped) {
+					(Striped) lok, image);
+		} else if (lok instanceof Wrapped) {
 			paintWrapped(CELL_SIZE * i + (CELL_SIZE - LOKUM_SIZE) / 2,
 					CELL_SIZE * j + (CELL_SIZE - LOKUM_SIZE) / 2,
-					(wrapped) lok, image);
-		} else if (lok instanceof colorBomb) {
+					(Wrapped) lok, image);
+		} else if (lok instanceof ColorBomb) {
 			paintColorBomb(CELL_SIZE * i + (CELL_SIZE - LOKUM_SIZE) / 2,
 					CELL_SIZE * j + (CELL_SIZE - LOKUM_SIZE) / 2,
-					(colorBomb) lok, image);
-		} else if (lok instanceof obstacle) {
+					(ColorBomb) lok, image);
+		} else if (lok instanceof Obstacle) {
 			paintObstacle(CELL_SIZE * i + (CELL_SIZE - LOKUM_SIZE) / 2,
 					CELL_SIZE * j + (CELL_SIZE - LOKUM_SIZE) / 2,
-					(obstacle) lok, image);
+					(Obstacle) lok, image);
 		} else if (lok instanceof TimedLokum) {
 			paintTimedLokum(CELL_SIZE * i + (CELL_SIZE - LOKUM_SIZE) / 2,
 					CELL_SIZE * j + (CELL_SIZE - LOKUM_SIZE) / 2,
@@ -187,7 +190,7 @@ public class Board extends JLabel {
 		}
 	}
 
-	public void paintNormal(int i, int j, Lokum lok, BufferedImage image) {
+	private void paintNormal(int i, int j, Lokum lok, BufferedImage image) {
 		Graphics2D g2d = image.createGraphics();
 		g2d.clipRect(i, j, LOKUM_SIZE, LOKUM_SIZE);
 
@@ -204,10 +207,10 @@ public class Board extends JLabel {
 
 	}
 
-	public void paintStriped(int i, int j, striped lok, BufferedImage image) {
+	private void paintStriped(int i, int j, Striped lok, BufferedImage image) {
 		Graphics2D g2d = image.createGraphics();
 		g2d.clipRect(i, j, LOKUM_SIZE, LOKUM_SIZE);
-		if (lok.getOrientation() == striped.HORIZONTAL) {
+		if (lok.getOrientation() == Striped.HORIZONTAL) {
 			if (lok.getColor().equals(Lokum.RED))
 				g2d.drawImage(redroseH, i, j, null);
 			if (lok.getColor().equals(Lokum.YELLOW))
@@ -229,7 +232,7 @@ public class Board extends JLabel {
 		g2d.dispose();
 	}
 
-	public void paintWrapped(int i, int j, wrapped lok, BufferedImage image) {
+	private void paintWrapped(int i, int j, Wrapped lok, BufferedImage image) {
 		int xDiff = (redroseW.getWidth(null) - LOKUM_SIZE) / 2;
 		int yDiff = (redroseW.getHeight(null) - LOKUM_SIZE) / 2;
 		Graphics2D g2d = image.createGraphics();
@@ -248,7 +251,7 @@ public class Board extends JLabel {
 		g2d.dispose();
 	}
 
-	public void paintColorBomb(int i, int j, colorBomb lok, BufferedImage image) {
+	private void paintColorBomb(int i, int j, ColorBomb lok, BufferedImage image) {
 		Graphics2D g2d = image.createGraphics();
 		g2d.clipRect(i, j, LOKUM_SIZE, LOKUM_SIZE);
 
@@ -257,7 +260,7 @@ public class Board extends JLabel {
 		g2d.dispose();
 	}
 
-	public void paintObstacle(int i, int j, obstacle lok, BufferedImage image) {
+	private void paintObstacle(int i, int j, Obstacle lok, BufferedImage image) {
 		Graphics2D g2d = image.createGraphics();
 		g2d.clipRect(i, j, LOKUM_SIZE, LOKUM_SIZE);
 
@@ -267,7 +270,7 @@ public class Board extends JLabel {
 
 	}
 
-	public void paintTimedLokum(int i, int j, TimedLokum lok,
+	private void paintTimedLokum(int i, int j, TimedLokum lok,
 			BufferedImage image) {
 		Graphics2D g2d = image.createGraphics();
 		g2d.clipRect(i, j, LOKUM_SIZE, LOKUM_SIZE);
@@ -285,7 +288,7 @@ public class Board extends JLabel {
 
 	}
 
-	public void selectCell(int x, int y) {
+	private void selectCell(int x, int y) {
 		for (int k = 0; k < CELL_SIZE; k++) {
 			image.setRGB(CELL_SIZE * x + k, CELL_SIZE * y, Color.red.getRGB());
 			image.setRGB(CELL_SIZE * x + k, CELL_SIZE * (y + 1),
@@ -299,7 +302,7 @@ public class Board extends JLabel {
 		// repaint();
 	}
 
-	public void deselectCell(int x, int y) {
+	private void deselectCell(int x, int y) {
 		for (int k = 0; k < CELL_SIZE; k++) {
 			image.setRGB(CELL_SIZE * x + k, CELL_SIZE * y, Color.black.getRGB());
 			image.setRGB(CELL_SIZE * x + k, CELL_SIZE * (y + 1),
@@ -311,6 +314,9 @@ public class Board extends JLabel {
 		this.setIcon(new ImageIcon(image));
 	}
 
+	/**
+	 * Marks the lokums that will be deleted on the board.
+	 */
 	public void markToBeDeleted() {
 		for (int[] a : GameBoard.getInstance().getDeleteList()) {
 			int x = a[0];

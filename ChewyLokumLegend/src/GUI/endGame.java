@@ -14,15 +14,15 @@ import DreamPackage.GameState;
 import DreamPackage.LokumGame;
 
 @SuppressWarnings("serial")
-public class endGame extends JFrame {
+public class EndGame extends JFrame {
 
-	private static endGame instance;
+	private static EndGame instance;
 	private JLabel messageLabel;
 	JButton returnButton;
 	JButton nextButton;
 	JButton retryButton;
 
-	private endGame() {
+	private EndGame() {
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
@@ -38,7 +38,7 @@ public class endGame extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				GameWindow.getInstance().setEnabled(true);
 				LokumGame.getInstance().showMainMenu();
-				endGame.getInstance().dispose();
+				EndGame.getInstance().dispose();
 			}
 		});
 		nextButton = new JButton("Next Level");
@@ -50,7 +50,7 @@ public class endGame extends JFrame {
 						.selectLevel(
 								GameState.getInstance().getSelectedLevel()
 										.getLevelID() + 1);
-				endGame.getInstance().dispose();
+				EndGame.getInstance().dispose();
 			}
 		});
 		retryButton = new JButton("Retry Level");
@@ -62,7 +62,7 @@ public class endGame extends JFrame {
 						.selectLevel(
 								GameState.getInstance().getSelectedLevel()
 										.getLevelID());
-				endGame.getInstance().dispose();
+				EndGame.getInstance().dispose();
 			}
 		});
 
@@ -73,12 +73,18 @@ public class endGame extends JFrame {
 		add(retryButton);
 	}
 
-	public static endGame getInstance() {
+	public static EndGame getInstance() {
 		if (instance == null)
-			instance = new endGame();
+			instance = new EndGame();
 		return instance;
 	}
 
+	/**
+	 * Shows the result of the game according to didWin
+	 * 
+	 * @param didWin
+	 *            The result of the game.
+	 */
 	public void setResult(boolean didWin) {
 		if (didWin) {
 			messageLabel.setText("YOU ROCK! "

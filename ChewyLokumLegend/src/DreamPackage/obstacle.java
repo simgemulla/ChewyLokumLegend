@@ -2,11 +2,11 @@ package DreamPackage;
 
 import java.awt.Color;
 
-public class obstacle extends Lokum {
+public class Obstacle extends Lokum {
 
 	private static Color obstacleColor = Color.BLACK;
 
-	public obstacle() {
+	public Obstacle() {
 		super(obstacleColor);
 	}
 
@@ -16,7 +16,7 @@ public class obstacle extends Lokum {
 
 	@Override
 	public Lokum createCopy() {
-		return new obstacle();
+		return new Obstacle();
 	}
 
 	@Override

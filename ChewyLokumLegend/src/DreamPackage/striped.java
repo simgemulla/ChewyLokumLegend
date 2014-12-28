@@ -3,7 +3,7 @@ package DreamPackage;
 import java.awt.Color;
 import java.util.Random;
 
-public class striped extends SpecialLokum {
+public class Striped extends SpecialLokum {
 
 	public static final int VERTICAL = 0;
 	public static final int HORIZONTAL = 1;
@@ -18,7 +18,7 @@ public class striped extends SpecialLokum {
 	 * @param orientation
 	 *            Orientation of the striped Lokum
 	 */
-	public striped(Color c, int orientation) {
+	public Striped(Color c, int orientation) {
 		super(c);
 		// Orientation must be 0 or 1 CHECK THIS
 		setOrientation(orientation);
@@ -45,8 +45,8 @@ public class striped extends SpecialLokum {
 		}
 	}
 
-	public striped createCopy() {
-		return new striped(this.getColor(), orientation);
+	public Striped createCopy() {
+		return new Striped(this.getColor(), orientation);
 	}
 
 	public String toString() {

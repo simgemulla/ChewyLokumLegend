@@ -68,38 +68,74 @@ public class GameWindow extends JFrame {
 		return instance;
 	}
 
+	/**
+	 * Makes the Board object paint the board and the lokums
+	 */
 	public void paintBoard() {
 		b.paintLokums();
 		// revalidate();
 		repaint();
 	}
 
+	/**
+	 * Makes the Board object mark the lokums in the GameBoard.deleteList
+	 */
 	public void markDeleteList() {
 		b.markToBeDeleted();
 		repaint();
 
 	}
 
+	/**
+	 * Sets the score label in the ScoreBoard object
+	 * 
+	 * @param x
+	 *            Score to be shown
+	 */
 	public void setScore(int x) {
 		sb.setScore(x);
 		// revalidate();
 		repaint();
 	}
 
+	/**
+	 * Sets the remaining moves label in the ScoreBoard object
+	 * 
+	 * @param x
+	 *            Remaining moves
+	 */
 	public void setRemainingMoves(int x) {
 		sb.setRemMoves(x);
 		// revalidate();
 		repaint();
 	}
 
+	/**
+	 * Sets the score needed label in the ScoreBoard object
+	 * 
+	 * @param x
+	 *            Score needed
+	 */
 	public void setScoreNeeded(int x) {
 		sb.setScoreNeeded(x);
 	}
 
+	/**
+	 * Sets the remaining time label in the ScoreBoard object
+	 * 
+	 * @param x
+	 *            Remaining time
+	 */
 	public void setRemainingTime(int x) {
 		sb.setRemainingTime(x);
 	}
 
+	/**
+	 * Sets the special swaps left label in the ScoreBoard object
+	 * 
+	 * @param x
+	 *            Special swaps left
+	 */
 	public void setSpecialSwapLeft(int x) {
 		sb.setSpecialSwapLeft(x);
 	}

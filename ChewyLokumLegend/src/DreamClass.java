@@ -2,7 +2,7 @@ import DreamPackage.LokumGame;
 
 ;
 /**
- * Dream Class is a main class of the game.
+ * Dream Class is the main class of the game.
  * 
  * @author macbook
  * 

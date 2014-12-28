@@ -4,16 +4,16 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import DreamPackage.colorBomb;
+import DreamPackage.ColorBomb;
 
-public class colorBombTest {
+public class ColorBombTest {
 
-	private static colorBomb c1;
+	private static ColorBomb c1;
 
 	@Before
 	public void setUp() throws Exception {
 
-		c1 = new colorBomb();
+		c1 = new ColorBomb();
 	}
 
 	@Test
@@ -37,7 +37,7 @@ public class colorBombTest {
 	}
 
 	private boolean testCreateCopyHelper() {
-		if (c1.colorBombColor() == c1.createCopy().getColor()
+		if (ColorBomb.colorBombColor == c1.createCopy().getColor()
 				&& c1.createCopy().repOK()) {
 			return true;
 

@@ -2,7 +2,7 @@ package DreamPackage;
 
 import java.awt.Color;
 
-public class wrapped extends SpecialLokum {
+public class Wrapped extends SpecialLokum {
 
 	/**
 	 * Creates a wrapped Lokum.
@@ -10,14 +10,14 @@ public class wrapped extends SpecialLokum {
 	 * @param c
 	 *            Color of the wrapped Lokum
 	 */
-	public wrapped(Color c) {
+	public Wrapped(Color c) {
 		super(c);
 		setCreateBonus(200);
 		setDeleteBonus(1080);
 	}
 
-	public wrapped createCopy() {
-		return new wrapped(this.getColor());
+	public Wrapped createCopy() {
+		return new Wrapped(this.getColor());
 	}
 
 	public String toString() {

@@ -70,7 +70,7 @@ public class GameBoardTest {
 		// Swapping normal and colorBomb
 		g1.toString();
 
-		g1.getLokumList()[1][0] = new colorBomb();
+		g1.getLokumList()[1][0] = new ColorBomb();
 		g1.swapLokums(0, 0, 1, 0);
 
 		g1.toString();
@@ -86,7 +86,7 @@ public class GameBoardTest {
 		// Swapping normal and striped
 		g1.toString();
 
-		g1.getLokumList()[1][0] = new striped(Color.red, striped.VERTICAL);
+		g1.getLokumList()[1][0] = new Striped(Color.red, Striped.VERTICAL);
 		g1.swapLokums(0, 0, 1, 0);
 
 		g1.toString();
@@ -102,7 +102,7 @@ public class GameBoardTest {
 		// Swapping normal and wrapped
 		g1.toString();
 
-		g1.getLokumList()[1][0] = new wrapped(Color.red);
+		g1.getLokumList()[1][0] = new Wrapped(Color.red);
 		g1.swapLokums(0, 0, 1, 0);
 
 		g1.toString();
@@ -245,7 +245,7 @@ public class GameBoardTest {
 		asd[1][0] = new NormalLokum(Lokum.YELLOW);
 		asd[1][1] = new NormalLokum(Lokum.GREEN);
 		asd[1][2] = new NormalLokum(Lokum.GREEN);
-		asd[2][0] = new striped(Lokum.GREEN, striped.HORIZONTAL);
+		asd[2][0] = new Striped(Lokum.GREEN, Striped.HORIZONTAL);
 		asd[2][1] = new NormalLokum(Lokum.BROWN);
 		asd[2][2] = new NormalLokum(Lokum.YELLOW);
 
@@ -274,7 +274,7 @@ public class GameBoardTest {
 		g1 = GameBoard.getInstance();
 		Lokum[][] asd = new Lokum[3][3];
 		asd[0][0] = new NormalLokum(Lokum.YELLOW);
-		asd[0][1] = new striped(Lokum.RED, striped.VERTICAL);
+		asd[0][1] = new Striped(Lokum.RED, Striped.VERTICAL);
 		asd[0][2] = new NormalLokum(Lokum.BROWN);
 		asd[1][0] = new NormalLokum(Lokum.GREEN);
 		asd[1][1] = new NormalLokum(Lokum.YELLOW);
@@ -308,7 +308,7 @@ public class GameBoardTest {
 		Lokum[][] asd = new Lokum[3][3];
 		asd[0][0] = new NormalLokum(Lokum.GREEN);
 		asd[0][1] = new NormalLokum(Lokum.GREEN);
-		asd[0][2] = new colorBomb();
+		asd[0][2] = new ColorBomb();
 		asd[1][0] = new NormalLokum(Lokum.RED);
 		asd[1][1] = new NormalLokum(Lokum.YELLOW);
 		asd[1][2] = new NormalLokum(Lokum.GREEN);
@@ -340,7 +340,7 @@ public class GameBoardTest {
 		g1 = GameBoard.getInstance();
 		Lokum[][] asd = new Lokum[3][3];
 		asd[0][0] = new NormalLokum(Lokum.GREEN);
-		asd[0][1] = new wrapped(Lokum.GREEN);
+		asd[0][1] = new Wrapped(Lokum.GREEN);
 		asd[0][2] = new NormalLokum(Lokum.RED);
 		asd[1][0] = new NormalLokum(Lokum.RED);
 		asd[1][1] = new NormalLokum(Lokum.YELLOW);
@@ -375,7 +375,7 @@ public class GameBoardTest {
 		Lokum[][] asd = new Lokum[3][3];
 		asd[0][0] = new NormalLokum(Lokum.GREEN);
 		asd[0][1] = new NormalLokum(Lokum.GREEN);
-		asd[0][2] = new obstacle();
+		asd[0][2] = new Obstacle();
 		asd[1][0] = new NormalLokum(Lokum.RED);
 		asd[1][1] = new NormalLokum(Lokum.YELLOW);
 		asd[1][2] = new NormalLokum(Lokum.GREEN);
@@ -397,7 +397,7 @@ public class GameBoardTest {
 
 		Assert.assertEquals(g1.getLokumList()[0][0].getColor(), Lokum.GREEN);
 		Assert.assertEquals(g1.getLokumList()[0][1].getColor(), Lokum.GREEN);
-		Assert.assertTrue(g1.getLokumList()[0][2] instanceof obstacle);
+		Assert.assertTrue(g1.getLokumList()[0][2] instanceof Obstacle);
 		Assert.assertEquals(g1.getLokumList()[1][0].getColor(), Lokum.RED);
 		Assert.assertEquals(g1.getLokumList()[1][1].getColor(), Lokum.YELLOW);
 		Assert.assertEquals(g1.getLokumList()[1][2].getColor(), Lokum.GREEN);
@@ -415,7 +415,7 @@ public class GameBoardTest {
 		Lokum[][] asd = new Lokum[3][3];
 		asd[0][0] = new NormalLokum(Lokum.GREEN);
 		asd[0][1] = new NormalLokum(Lokum.GREEN);
-		asd[0][2] = new obstacle();
+		asd[0][2] = new Obstacle();
 		asd[1][0] = new NormalLokum(Lokum.RED);
 		asd[1][1] = new NormalLokum(Lokum.YELLOW);
 		asd[1][2] = new NormalLokum(Lokum.GREEN);
@@ -434,7 +434,7 @@ public class GameBoardTest {
 
 		Assert.assertEquals(g1.getLokumList()[1][0].getColor(), Lokum.RED);
 		Assert.assertEquals(g1.getLokumList()[1][1].getColor(), Lokum.YELLOW);
-		Assert.assertTrue(g1.getLokumList()[1][2] instanceof obstacle);
+		Assert.assertTrue(g1.getLokumList()[1][2] instanceof Obstacle);
 		Assert.assertEquals(g1.getLokumList()[2][0].getColor(), Lokum.BROWN);
 		Assert.assertEquals(g1.getLokumList()[2][1].getColor(), Lokum.RED);
 		Assert.assertEquals(g1.getLokumList()[2][2].getColor(), Lokum.GREEN);
@@ -454,7 +454,7 @@ public class GameBoardTest {
 		asd[0][2] = new NormalLokum(Lokum.BROWN);
 		asd[1][0] = new NormalLokum(Lokum.GREEN);
 		asd[1][1] = new NormalLokum(Lokum.RED);
-		asd[1][2] = new obstacle();
+		asd[1][2] = new Obstacle();
 		asd[2][0] = new NormalLokum(Lokum.YELLOW);
 		asd[2][1] = new NormalLokum(Lokum.GREEN);
 		asd[2][2] = new NormalLokum(Lokum.BROWN);
@@ -473,7 +473,7 @@ public class GameBoardTest {
 		Assert.assertEquals(g1.getLokumList()[0][2].getColor(), Lokum.BROWN);
 		Assert.assertEquals(g1.getLokumList()[1][0].getColor(), Lokum.GREEN);
 		Assert.assertEquals(g1.getLokumList()[1][1].getColor(), Lokum.RED);
-		Assert.assertTrue(g1.getLokumList()[1][2] instanceof obstacle);
+		Assert.assertTrue(g1.getLokumList()[1][2] instanceof Obstacle);
 		Assert.assertEquals(g1.getLokumList()[2][0].getColor(), Lokum.YELLOW);
 		Assert.assertEquals(g1.getLokumList()[2][1].getColor(), Lokum.GREEN);
 		Assert.assertEquals(g1.getLokumList()[2][2].getColor(), Lokum.BROWN);
@@ -488,7 +488,7 @@ public class GameBoardTest {
 		g1 = GameBoard.getInstance();
 		Lokum[][] asd = new Lokum[3][3];
 		asd[0][0] = new NormalLokum(Lokum.RED);
-		asd[0][1] = new obstacle();
+		asd[0][1] = new Obstacle();
 		asd[0][2] = new NormalLokum(Lokum.GREEN);
 		asd[1][0] = new NormalLokum(Lokum.BROWN);
 		asd[1][1] = new NormalLokum(Lokum.GREEN);
@@ -506,7 +506,7 @@ public class GameBoardTest {
 
 		g1.swapLokums(1, 1, 1, 2);
 
-		Assert.assertTrue(g1.getLokumList()[0][1] instanceof obstacle);
+		Assert.assertTrue(g1.getLokumList()[0][1] instanceof Obstacle);
 		Assert.assertEquals(g1.getLokumList()[0][2].getColor(), Lokum.RED);
 		Assert.assertEquals(g1.getLokumList()[1][1].getColor(), Lokum.BROWN);
 		Assert.assertEquals(g1.getLokumList()[1][2].getColor(), Lokum.YELLOW);
